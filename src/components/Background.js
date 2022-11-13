@@ -20,7 +20,9 @@ const styles = {
         borderRadius: "400rem / 140rem",
         rotate: "20deg",
         position: "relative",
+        top: "-4rem",
         left: "-12rem",
+        boxShadow: "rgba(100, 100, 111, 1) 0px 7px 29px 0px"
     },
     background2: {
         width: "116rem",
@@ -30,7 +32,7 @@ const styles = {
         rotate: "-20deg",
         position: "absolute",
         left: "-12rem",
-        top: "36rem",
-        zIndex: -2,
+        top: "28rem",
+        zIndex: -1,
     }
 }

@@ -5,11 +5,11 @@ import Main from "pages/Main";
 
 function App() {
     return (
-        <NextUIProvider>
+        <>
             <Header />
             <Main />
             <Background />
-        </NextUIProvider>
+        </>
     );
 }
 
