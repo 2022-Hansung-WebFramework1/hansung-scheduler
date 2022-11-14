@@ -1,17 +1,21 @@
 import React from 'react';
+import Search from "components/Search";
 
 const Main = () => {
     return (
-        <div style={{ position: "absolute", zIndex: 999 }}>
-            {
-                Array.from({length: 0}, () => 0).map(() => {
-                    return (
-                        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aut consequatur deserunt, dolore ducimus harum inventore ipsum itaque minus mollitia porro quam quos, reiciendis sunt totam! Beatae exercitationem impedit ipsam.</div>
-                    )
-                })
-            }
+        <div style={styles.container}>
+            <Search />
         </div>
     );
 };
 
 export default Main;
+
+const styles = {
+    container: {
+        position: "absolute",
+        zIndex: 999,
+        paddingRight: "10%",
+        paddingLeft: "10%"
+    }
+}
