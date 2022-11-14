@@ -6,7 +6,7 @@ const Search = () => {
     return (
         <div style={styles.container}>
             <input ref={inputRef} type={"text"} style={styles.input} />
-            <FiSearch size={24} color={"#D9D9D9"} onClick={() => console.log(inputRef.current.value)} />
+            <FiSearch size={24} color={"#252525"} onClick={() => console.log(inputRef.current.value)} />
         </div>
     );
 };
