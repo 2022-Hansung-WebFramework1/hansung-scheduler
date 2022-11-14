@@ -22,7 +22,8 @@ const styles = {
         position: "relative",
         top: "-4rem",
         left: "-12rem",
-        boxShadow: "rgba(100, 100, 111, 1) 0px 7px 29px 0px"
+        boxShadow: "rgba(100, 100, 111, 1) 0px 7px 29px 0px",
+        zIndex: 1
     },
     background2: {
         width: "116rem",
@@ -33,6 +34,5 @@ const styles = {
         position: "absolute",
         left: "-12rem",
         top: "28rem",
-        zIndex: -1,
     }
 }
