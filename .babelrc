@@ -1,0 +1,21 @@
+{
+  "presets": [["@babel/preset-env", { "useBuiltIns": "entry", "corejs": "corejs@2" }], "@babel/preset-react"],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-syntax-dynamic-import",
+    "dynamic-import-node",
+    "jsx-control-statements",
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "extensions": [".js", ".jsx"],
+        "alias": {
+          "src": "./src",
+          "static": "./static",
+          "css": "./static/css"
+        }
+      }
+    ]
+  ]
+}
