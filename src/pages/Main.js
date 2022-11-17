@@ -1,7 +1,6 @@
 import React from 'react';
 import Search from "components/Search";
 import TagGroup from "components/TagGroup";
-import FlipCard from 'react-flipcard3d';
 import Card from "components/Card";
 
 const Main = () => {
