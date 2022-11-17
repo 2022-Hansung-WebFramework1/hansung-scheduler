@@ -11,9 +11,10 @@ const Main = () => {
             <Card
                 title={"테스트"}
                 className={"N"}
-                tag={["3학점"]}
+                tags={["3학점", "야간"]}
                 professor={"박승현"}
                 classroom={"공학관 309"}
+                day={"수"}
                 startTime={new Date('2022-11-16T18:00:00')}
                 endTime={new Date('2022-11-16T19:30:00')}
             />
