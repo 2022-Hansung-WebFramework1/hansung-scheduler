@@ -36,7 +36,7 @@ const styles = {
         alignItems: "center",
         justifyContent: "center",
         width: 64,
-        height: 23,
+        height: 22,
         border: "1px solid #D9D9D9",
         borderRadius: 200,
         backgroundColor: "white",

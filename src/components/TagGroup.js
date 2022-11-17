@@ -5,9 +5,9 @@ const TagGroup = ({ tags=[] }) => {
     return (
         <div style={styles.container}>
             {
-                tags.map((tag) => {
+                tags.map((tag, idx) => {
                     return (
-                        <Tag item={tag} />
+                        <Tag key={`tag-${tag.name}-${idx}`} item={tag} />
                     )
                 })
             }
