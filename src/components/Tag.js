@@ -9,7 +9,7 @@ const Tag = ({ item }) => {
         )
     } else {
         return (
-            <div style={styles.container}>
+            <div style={styles.tag}>
                 { item.name }
             </div>
         )
@@ -29,6 +29,18 @@ const styles = {
         borderRadius: 200,
         backgroundColor: "white",
         fontSize: 14,
+        marginRight: 10
+    },
+    tag : {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 64,
+        height: 23,
+        border: "1px solid #D9D9D9",
+        borderRadius: 200,
+        backgroundColor: "white",
+        fontSize: 11,
         marginRight: 10
     }
 }
