@@ -2,6 +2,24 @@ import React, {useEffect, useRef, useState} from 'react';
 import styles from 'assets/OrderDropDown.module.css'
 import {FiCheck, FiChevronDown} from "react-icons/fi";
 
+const dropDownItems = [
+    {
+        name: "시간순",
+        engName: "time",
+        value: 0
+    },
+    {
+        name: "학점순",
+        engName: "credit",
+        value: 1
+    },
+    {
+        name: "평가순",
+        engName: "star",
+        value: 2
+    }
+]
+
 const OrderDropDown = () => {
     const [open, setOpen] = useState(false);
     const dropdownButtonRef = useRef(null);
@@ -26,6 +44,12 @@ const OrderDropDown = () => {
         };
     }, [dropdownRef]);
 
+    useEffect(() => {
+        if (open && selected.value !== -1) {
+            dropdownItemRef.current[selected.value].className = styles.dropdownItemSelected;
+        }
+    }, [open]);
+
     return (
         <div>
             <div
@@ -40,107 +64,52 @@ const OrderDropDown = () => {
             </div>
             {
                 open ? (
-                    <div className={open ? styles.dropdownContainer : null} ref={dropdownRef}>
+                    <div className={styles.dropdownContainer} ref={dropdownRef}>
                         <div className={styles.dropdownTitle}>정렬</div>
 
                         <div className={styles.dropdownItemContainer}>
-                            <div
-                                className={styles.dropdownItem}
-                                onClick={(event) => {
-                                    // 자신이 아닌 다른 아이템들의 style을 초기화
-                                    dropdownItemRef.current.forEach((item) => {
-                                        if (item !== event.target) {
-                                            item.className = styles.dropdownItem;
-                                        }
-                                    });
-                                    setSelected({name: 'time', value: 0});
-                                    dropdownItemRef.current[0].className = styles.dropdownItemSelected;
-                                }}
-                                onMouseOver={(event) => {
-                                    dropdownItemRef.current.forEach((item) => {
-                                        if (item !== event.target) {
-                                            item.className = styles.dropdownItem;
-                                        }
-                                    });
-                                    dropdownItemRef.current[0].className = styles.dropdownItemHover;
-                                }}
-                                onMouseOut={() => {
-                                    for (let i = 0; i < dropdownItemRef.current.length; i++) {
-                                        if (selected.value !== i) {
-                                            dropdownItemRef.current[i].className = styles.dropdownItem;
-                                        }
-                                    }
-                                    dropdownItemRef.current[selected.value].className = styles.dropdownItemSelected;
-                                }}
-                                ref={ref => dropdownItemRef.current[0] = ref}
-                            >
-                                <div>시간순</div>
-                                {selected.name === 'time' && <FiCheck />}
-                            </div>
-                            <div
-                                className={styles.dropdownItem}
-                                onClick={(event) => {
-                                    dropdownItemRef.current.forEach((item) => {
-                                        if (item !== event.target) {
-                                            item.className = styles.dropdownItem;
-                                        }
-                                    });
-                                    setSelected({name: 'credit', value: 1});
-                                    dropdownItemRef.current[1].className = styles.dropdownItemSelected;
-                                }}
-                                onMouseOver={(event) => {
-                                    dropdownItemRef.current.forEach((item) => {
-                                        if (item !== event.target) {
-                                            item.className = styles.dropdownItem;
-                                        }
-                                    });
-                                    dropdownItemRef.current[1].className = styles.dropdownItemHover;
-                                }}
-                                onMouseOut={() => {
-                                    for (let i = 0; i < dropdownItemRef.current.length; i++) {
-                                        if (selected.value !== i) {
-                                            dropdownItemRef.current[i].className = styles.dropdownItem;
-                                        }
-                                    }
-                                    dropdownItemRef.current[selected.value].className = styles.dropdownItemSelected;
-                                }}
-                                ref={ref => dropdownItemRef.current[1] = ref}
-                            >
-                                <div>학점순</div>
-                                {selected.name === 'credit' && <FiCheck />}
-                            </div>
-                            <div
-                                className={styles.dropdownItem}
-                                onClick={(event) => {
-                                    dropdownItemRef.current.forEach((item) => {
-                                        if (item !== event.target) {
-                                            item.className = styles.dropdownItem;
-                                        }
-                                    });
-                                    setSelected({name: 'star', value: 2});
-                                    dropdownItemRef.current[2].className = styles.dropdownItemSelected;
-                                }}
-                                onMouseOver={(event) => {
-                                    dropdownItemRef.current.forEach((item) => {
-                                        if (item !== event.target) {
-                                            item.className = styles.dropdownItem;
-                                        }
-                                    });
-                                    dropdownItemRef.current[2].className = styles.dropdownItemHover;
-                                }}
-                                onMouseOut={() => {
-                                    for (let i = 0; i < dropdownItemRef.current.length; i++) {
-                                        if (selected.value !== i) {
-                                            dropdownItemRef.current[i].className = styles.dropdownItem;
-                                        }
-                                    }
-                                    dropdownItemRef.current[selected.value].className = styles.dropdownItemSelected;
-                                }}
-                                ref={ref => dropdownItemRef.current[2] = ref}
-                            >
-                                <div>평가순</div>
-                                {selected.name === 'star' && <FiCheck />}
-                            </div>
+                            {
+                                dropDownItems.map((item, index) => {
+                                    return (
+                                        <div
+                                            key={index}
+                                            className={styles.dropdownItem}
+                                            onClick={(event) => {
+                                                // 자신이 아닌 다른 아이템들의 style을 초기화
+                                                dropdownItemRef.current.forEach((item) => {
+                                                    if (item !== event.target) {
+                                                        item.className = styles.dropdownItem;
+                                                    }
+                                                });
+                                                setSelected({name: item.engName, value: index});
+                                                dropdownItemRef.current[index].className = styles.dropdownItemSelected;
+                                            }}
+                                            onMouseOver={(event) => {
+                                                dropdownItemRef.current.forEach((item) => {
+                                                    if (item !== event.target) {
+                                                        item.className = styles.dropdownItem;
+                                                    }
+                                                });
+                                                dropdownItemRef.current[index].className = styles.dropdownItemHover;
+                                            }}
+                                            onMouseOut={() => {
+                                                for (let i = 0; i < dropdownItemRef.current.length; i++) {
+                                                    if (selected.value !== i) {
+                                                        dropdownItemRef.current[i].className = styles.dropdownItem;
+                                                    }
+                                                }
+                                                if (selected.value !== -1) {
+                                                    dropdownItemRef.current[selected.value].className = styles.dropdownItemSelected;
+                                                }
+                                            }}
+                                            ref={ref => dropdownItemRef.current[index] = ref}
+                                        >
+                                            <div>{item.name}</div>
+                                            {selected.name === item.engName && <FiCheck />}
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                 ) : null
