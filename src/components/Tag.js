@@ -1,16 +1,25 @@
 import React from 'react';
+import {FiArrowDown, FiArrowUp} from "react-icons/fi";
+import { FilterType, OrderType } from "../types";
 
 const Tag = ({ item }) => {
-    if (item.type === 'filter') {
+    if (item.type === FilterType.FILTER) {
         return (
             <div style={styles.container}>
                 { item.name }
             </div>
         )
-    } else {
+    } else if (item.type === FilterType.ORDER) {
         return (
             <div style={styles.container}>
-                { item.name }
+                <div>{ item.name }</div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginLeft: 4 }}>
+                    {
+                        item.order === OrderType.DESC ?
+                            <FiArrowDown /> :
+                            <FiArrowUp />
+                    }
+                </div>
             </div>
         )
     }
