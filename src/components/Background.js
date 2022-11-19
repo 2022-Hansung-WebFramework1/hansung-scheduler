@@ -14,25 +14,24 @@ export default Background;
 
 const styles = {
     background1: {
-        width: "116rem",
-        height: "40rem",
+        width: "120vw",
+        height: "100vh",
         backgroundColor: "#002870",
-        borderRadius: "400rem / 140rem",
+        borderRadius: "400vmax / 130vmax",
         rotate: "20deg",
         position: "relative",
-        top: "-4rem",
-        left: "-12rem",
+        left: "-14vw",
         boxShadow: "rgba(100, 100, 111, 1) 0px 7px 29px 0px",
         zIndex: 1
     },
     background2: {
-        width: "116rem",
-        height: "40rem",
+        width: "120vw",
+        height: "100vh",
         backgroundColor: "#DDF6FF",
-        borderRadius: "400rem / 140rem",
+        borderRadius: "400vmax / 130vmax",
         rotate: "-20deg",
         position: "absolute",
-        left: "-12rem",
-        top: "28rem",
+        left: "-14vw",
+        top: "58vh",
     }
 }
