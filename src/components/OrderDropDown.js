@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from 'assets/OrderDropDown.module.css'
-import {FiCheck, FiChevronDown} from "react-icons/fi";
+import {FiArrowDown, FiArrowUp, FiChevronDown} from "react-icons/fi";
+import {OrderType} from "types";
 
 const dropDownItems = [
     {
@@ -25,7 +26,7 @@ const OrderDropDown = () => {
     const dropdownButtonRef = useRef(null);
     const dropdownRef = useRef(null);
     const dropdownItemRef = useRef([]);
-    const [selected, setSelected] = useState({name: "", value: -1});
+    const [selected, setSelected] = useState({name: "", value: -1, order: ""});
 
     // dropdown 외부 클릭 시 닫히도록
     useEffect(() => {
@@ -49,6 +50,10 @@ const OrderDropDown = () => {
             dropdownItemRef.current[selected.value].className = styles.dropdownItemSelected;
         }
     }, [open]);
+
+    useEffect(() => {
+        console.log(selected);
+    }, [selected]);
 
     return (
         <div>
@@ -81,7 +86,16 @@ const OrderDropDown = () => {
                                                         item.className = styles.dropdownItem;
                                                     }
                                                 });
-                                                setSelected({name: item.engName, value: index});
+
+                                                if (selected.value === index) {
+                                                    if (selected.order === OrderType.ASC) {
+                                                        setSelected({name: dropDownItems[index].engName, value: dropDownItems[index].value, order: OrderType.DESC});
+                                                    } else {
+                                                        setSelected({name: dropDownItems[index].engName, value: dropDownItems[index].value, order: OrderType.ASC});
+                                                    }
+                                                } else {
+                                                    setSelected({name: dropDownItems[index].engName, value: dropDownItems[index].value, order: OrderType.ASC});
+                                                }
                                                 dropdownItemRef.current[index].className = styles.dropdownItemSelected;
                                             }}
                                             onMouseOver={(event) => {
@@ -105,7 +119,8 @@ const OrderDropDown = () => {
                                             ref={ref => dropdownItemRef.current[index] = ref}
                                         >
                                             <div>{item.name}</div>
-                                            {selected.name === item.engName && <FiCheck />}
+                                            {(selected.name === item.engName && selected.order === OrderType.ASC) && <FiArrowUp />}
+                                            {(selected.name === item.engName && selected.order === OrderType.DESC) && <FiArrowDown />}
                                         </div>
                                     )
                                 })
