@@ -115,8 +115,7 @@ const OrderDropDown = () => {
                                             ref={ref => dropdownItemRef.current[index] = ref}
                                         >
                                             <div>{item.name}</div>
-                                            {(selected.name === item.engName && selected.order === OrderType.ASC) && <FiArrowUp />}
-                                            {(selected.name === item.engName && selected.order === OrderType.DESC) && <FiArrowDown />}
+                                            {(selected.name === item.engName) && <FiArrowUp style={{rotate: selected.order === OrderType.ASC ? "0deg" : "180deg", transition: "all 0.4s"}}/>}
                                         </div>
                                     )
                                 })
