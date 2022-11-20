@@ -51,10 +51,6 @@ const OrderDropDown = () => {
         }
     }, [open]);
 
-    useEffect(() => {
-        console.log(selected);
-    }, [selected]);
-
     return (
         <div>
             <div

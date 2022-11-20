@@ -3,6 +3,7 @@ import Search from "components/Search";
 import TagGroup from "components/TagGroup";
 import { FilterType, OrderType } from "types";
 import OrderDropDown from "components/OrderDropDown";
+import FilterDropDown from "components/FilterDropDown";
 
 const tags = [
     {
@@ -24,6 +25,7 @@ const Main = () => {
     return (
         <div style={styles.container}>
             <OrderDropDown />
+            <FilterDropDown />
         </div>
     );
 };
