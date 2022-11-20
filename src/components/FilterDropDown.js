@@ -7,10 +7,11 @@ const dropDownItems = [
         title: "교수",
         value: 0,
         items: [
-            {name: "강희중", value: 0},
-            {name: "김경희", value: 1},
-            {name: "김동현", value: 2},
-            {name: "김성훈", value: 3}
+            {name: "박승현", value: 0},
+            {name: "한기준", value: 1},
+            {name: "정인환", value: 2},
+            {name: "김성동", value: 3},
+            {name: "조혜경", value: 4},
         ]
     },
     {

@@ -13,6 +13,8 @@
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    cursor: pointer;
 }
 
 .container:hover {
@@ -50,13 +52,12 @@
     width: 100%;
     align-items: center;
     margin-top: 10px;
-    margin-bottom: 10px;
 }
 
 .dropdownItemTitle {
     display: flex;
     flex-direction: row;
-    margin-left: 10px;
+    margin-left: 16px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
@@ -69,8 +70,6 @@
     font-weight: 400;
     border-radius: 0.75rem;
     cursor: pointer;
-
-    transition: all 0.2s;
 
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -85,6 +84,7 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0, 1.25, 0, 1), padding 0.2s;
+    border-radius: 0.75rem;
 }
 
 .dropdownItemSubContainerSelected {
@@ -95,6 +95,7 @@
     transition: max-height 1s cubic-bezier(0, 0.5, 0, 0.5), padding 0.2s;
     padding-top: 10px;
     padding-bottom: 10px;
+    border-radius: 0.75rem;
 }
 
 .dropdownItemSub {

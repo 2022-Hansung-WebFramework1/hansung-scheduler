@@ -22,6 +22,8 @@ const tags = [
 ]
 
 const Main = () => {
+
+
     return (
         <div style={styles.container}>
             <OrderDropDown />
@@ -37,6 +39,8 @@ const styles = {
         position: "absolute",
         zIndex: 999,
         paddingRight: "10%",
-        paddingLeft: "10%"
+        paddingLeft: "10%",
+        display: "flex",
+        flexDirection: "row",
     }
 }
