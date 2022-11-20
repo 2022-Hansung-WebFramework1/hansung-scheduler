@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from 'assets/OrderDropDown.module.css'
 import {FiArrowUp, FiChevronDown} from "react-icons/fi";
-import {FilterType, OrderType} from "types";
+import {TagType, OrderType} from "types";
 import {useRecoilState} from "recoil";
 import {tagsState} from "states";
 
@@ -60,14 +60,17 @@ const OrderDropDown = () => {
         if (selected.value !== -1) {
             let tempTags = [...tags];
             for (let i = 0; i < tempTags.length; i++) {
-                if (tempTags[i].type === FilterType.ORDER) {
+                if (tempTags[i].type === TagType.ORDER) {
                     tempTags.splice(i, 1);
                 }
             }
             tempTags.push({
-                type: FilterType.ORDER,
+                type: TagType.ORDER,
                 name: dropDownItems[selected.value].name,
                 order: selected.order
+            });
+            tempTags.sort((a, b) => {
+                return b.type.length - a.type.length;
             });
             setTags(tempTags);
         }

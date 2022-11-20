@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Search from "components/Search";
 import TagGroup from "components/TagGroup";
 import OrderDropDown from "components/OrderDropDown";
@@ -8,6 +8,10 @@ import {tagsState} from "states";
 
 const Main = () => {
     const tags = useRecoilValue(tagsState);
+
+    useEffect(() => {
+        console.log(tags);
+    }, [tags]);
 
     return (
         <div style={styles.container}>

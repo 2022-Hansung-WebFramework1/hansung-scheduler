@@ -1,10 +1,14 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from 'assets/FilterDropDown.module.css';
 import {FiChevronDown, FiChevronRight} from "react-icons/fi";
+import {useRecoilState} from "recoil";
+import {tagsState} from "states";
+import {FilterType, TagType} from "../types";
 
 const dropDownItems = [
     {
         title: "교수",
+        type: FilterType.PROFESSOR,
         value: 0,
         items: [
             {name: "박승현", value: 0},
@@ -16,6 +20,7 @@ const dropDownItems = [
     },
     {
         title: "강의실",
+        type: FilterType.PLACE,
         value: 1,
         items: [
             {name: "미래관", value: 0},
@@ -26,6 +31,7 @@ const dropDownItems = [
     },
     {
         title: "학점",
+        type: FilterType.CREDIT,
         value: 2,
         items: [
             {name: "1학점", value: 0},
@@ -41,6 +47,7 @@ const FilterDropDown = () => {
     const dropdownButtonRef = useRef(null);
     const dropdownRef = useRef(null);
     const [selected, setSelected] = useState([]);
+    const [tags, setTags] = useRecoilState(tagsState);
 
     // dropdown 외부 클릭 시 닫히도록
     useEffect(() => {
@@ -64,11 +71,6 @@ const FilterDropDown = () => {
             setSelected(Array(dropDownItems.length).fill(false));
         }
     }, []);
-
-    useEffect(() => {
-        console.log(selected);
-    }, [selected]);
-
 
     return (
         <div>
@@ -103,7 +105,9 @@ const FilterDropDown = () => {
                                                 setSelected(newSelected);
                                             }}
                                         >
-                                            <div style={{rotate: selected[index] ? "90deg" : "0deg", transition: "all 0.2s"}}><FiChevronRight /></div>
+                                            <div style={{rotate: selected[index] ? "90deg" : "0deg", transition: "all 0.2s"}}>
+                                                <FiChevronRight />
+                                            </div>
                                             <div style={{ marginLeft: 10, fontWeight: 500 }}>{item.title}</div>
                                         </div>
 
@@ -112,7 +116,44 @@ const FilterDropDown = () => {
                                                 item.items.map((subItem, subIndex) => {
                                                     return (
                                                         <div key={subIndex} className={styles.dropdownItemSub}>
-                                                            <input type="checkbox"/>
+                                                            <input
+                                                                type="checkbox"
+                                                                onClick={() => {
+                                                                    const newTags = [...tags];
+                                                                    const tempItem = {
+                                                                        type: TagType.FILTER,
+                                                                        filterType: item.type,
+                                                                        name: subItem.name
+                                                                    }
+                                                                    for (let i = 0; i < newTags.length; i++) {
+                                                                        if (newTags[i].type === tempItem.type && newTags[i].filterType === tempItem.filterType && newTags[i].name === tempItem.name) {
+                                                                            newTags.splice(i, 1);
+                                                                            newTags.sort((a, b) => {
+                                                                                if (a.type === b.type) {
+                                                                                    return !a.name.localeCompare(b.name);
+                                                                                }
+                                                                                return b.type.length - a.type.length;
+                                                                            });
+                                                                            setTags(newTags);
+                                                                            return;
+                                                                        }
+                                                                    }
+
+                                                                    newTags.push(tempItem);
+                                                                    newTags.sort((a, b) => {
+                                                                        if (a.type === b.type) {
+                                                                            return !a.name.localeCompare(b.name);
+                                                                        }
+                                                                        return b.type.length - a.type.length;
+                                                                    });
+                                                                    setTags(newTags);
+                                                                }}
+                                                                checked={
+                                                                    tags.some((tag) => {
+                                                                        return tag.type === TagType.FILTER && tag.filterType === item.type && tag.name === subItem.name;
+                                                                    })
+                                                                }
+                                                            />
                                                             <div>{subItem.name}</div>
                                                         </div>
                                                     )

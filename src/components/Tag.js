@@ -1,6 +1,6 @@
 import React from 'react';
 import {FiArrowUp} from "react-icons/fi";
-import { FilterType, OrderType } from "../types";
+import { TagType, OrderType } from "../types";
 import {useRecoilState} from "recoil";
 import {tagsState} from "states";
 import styles from 'assets/Tag.module.css'
@@ -8,19 +8,19 @@ import styles from 'assets/Tag.module.css'
 const Tag = ({ item }) => {
     const [tags, setTags] = useRecoilState(tagsState);
 
-    if (item.type === FilterType.FILTER) {
+    if (item.type === TagType.FILTER) {
         return (
             <div className={styles.container}>
                 { item.name }
             </div>
         )
-    } else if (item.type === FilterType.ORDER) {
+    } else if (item.type === TagType.ORDER) {
         return (
             <div
                 className={styles.container}
                 onClick={() => {
                     const newTags = tags.map((tag) => {
-                        if (tag.type === FilterType.ORDER) {
+                        if (tag.type === TagType.ORDER) {
                             return {
                                 ...tag,
                                 order: tag.order === OrderType.ASC ? OrderType.DESC : OrderType.ASC
