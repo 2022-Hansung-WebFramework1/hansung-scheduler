@@ -1,31 +1,17 @@
 import React from 'react';
 import Search from "components/Search";
 import TagGroup from "components/TagGroup";
-import { FilterType, OrderType } from "types";
 import OrderDropDown from "components/OrderDropDown";
 import FilterDropDown from "components/FilterDropDown";
-
-const tags = [
-    {
-        type: FilterType.FILTER,
-        name: "공학관"
-    },
-    {
-        type: FilterType.FILTER,
-        name: "박승현"
-    },
-    {
-        type: FilterType.ORDER,
-        name: "시간순",
-        order: OrderType.ASC
-    }
-]
+import {useRecoilValue} from "recoil";
+import {tagsState} from "states";
 
 const Main = () => {
-
+    const tags = useRecoilValue(tagsState);
 
     return (
         <div style={styles.container}>
+            <TagGroup tags={tags} />
             <OrderDropDown />
             <FilterDropDown />
         </div>

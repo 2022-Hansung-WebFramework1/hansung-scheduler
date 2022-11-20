@@ -1,7 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from 'assets/OrderDropDown.module.css'
-import {FiArrowDown, FiArrowUp, FiChevronDown} from "react-icons/fi";
-import {OrderType} from "types";
+import {FiArrowUp, FiChevronDown} from "react-icons/fi";
+import {FilterType, OrderType} from "types";
+import {useRecoilState} from "recoil";
+import {tagsState} from "states";
 
 const dropDownItems = [
     {
@@ -23,10 +25,13 @@ const dropDownItems = [
 
 const OrderDropDown = () => {
     const [open, setOpen] = useState(false);
+    const [selected, setSelected] = useState({name: "", value: -1, order: ""});
+
     const dropdownButtonRef = useRef(null);
     const dropdownRef = useRef(null);
     const dropdownItemRef = useRef([]);
-    const [selected, setSelected] = useState({name: "", value: -1, order: ""});
+
+    const [tags, setTags] = useRecoilState(tagsState);
 
     // dropdown 외부 클릭 시 닫히도록
     useEffect(() => {
@@ -50,6 +55,23 @@ const OrderDropDown = () => {
             dropdownItemRef.current[selected.value].className = styles.dropdownItemSelected;
         }
     }, [open]);
+
+    useEffect(() => {
+        if (selected.value !== -1) {
+            let tempTags = [...tags];
+            for (let i = 0; i < tempTags.length; i++) {
+                if (tempTags[i].type === FilterType.ORDER) {
+                    tempTags.splice(i, 1);
+                }
+            }
+            tempTags.push({
+                type: FilterType.ORDER,
+                name: dropDownItems[selected.value].name,
+                order: selected.order
+            });
+            setTags(tempTags);
+        }
+    }, [selected]);
 
     return (
         <div>
@@ -115,7 +137,7 @@ const OrderDropDown = () => {
                                             ref={ref => dropdownItemRef.current[index] = ref}
                                         >
                                             <div>{item.name}</div>
-                                            {(selected.name === item.engName) && <FiArrowUp style={{rotate: selected.order === OrderType.ASC ? "0deg" : "180deg", transition: "all 0.4s"}}/>}
+                                            {(selected.name === item.engName) && <FiArrowUp style={{rotate: selected.order === OrderType.ASC ? "0deg" : "180deg", transition: "all 0.4s"}} />}
                                         </div>
                                     )
                                 })

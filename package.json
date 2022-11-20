@@ -13,6 +13,7 @@
     "react-icons": "^4.6.0",
     "react-scripts": "5.0.1",
     "react-smooth-corners": "^1.0.4",
+    "recoil": "^0.7.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
