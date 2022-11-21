@@ -3,6 +3,7 @@ import ReactCardFlip from "react-card-flip";
 import { IoMenu } from 'react-icons/io5';
 import TagGroup from "./TagGroup";
 import Moment from "react-moment";
+import { useSwipeable } from 'react-swipeable';
 
 /**
  *
@@ -29,10 +30,16 @@ const TimeContent = ({day, startTime, endTime}) => {
 
 const Card = ({title, className, tags, professor, classroom, day, startTime, endTime}) => {
     const [flipped, setFlipped] = useState(false);
+    const handlers = useSwipeable({
+        onSwiped: (eventData) =>  setFlipped(prev => !prev),
+        swipeDuration: 500,
+        preventScrollOnSwipe: true,
+        trackMouse: true
+    });
 
     return (
         <ReactCardFlip isFlipped={flipped} flipDirection="horizontal">
-            <div style={{...styles.card, ...styles.frontContainer}} onClick={() => setFlipped(true)}>
+            <div {...handlers} style={{...styles.card, ...styles.frontContainer}}>
                 <IoMenu style={styles.icon} size={"1.5em"} color={"lightgrey"}/>
                 <div style={styles.title}>{title} [{className}]</div>
                 <div style={styles.tagContainer}>
@@ -45,7 +52,7 @@ const Card = ({title, className, tags, professor, classroom, day, startTime, end
                 </div>
 
             </div>
-            <div style={{...styles.card, ...styles.frontContainer}} onClick={() => setFlipped(false)}>b</div>
+            <div {...handlers} style={{...styles.card, ...styles.frontContainer}}>b</div>
         </ReactCardFlip>
 
 
