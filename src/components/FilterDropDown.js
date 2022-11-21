@@ -118,7 +118,7 @@ const FilterDropDown = () => {
                                                         <div key={subIndex} className={styles.dropdownItemSub}>
                                                             <input
                                                                 type="checkbox"
-                                                                onClick={() => {
+                                                                onChange={() => {
                                                                     const newTags = [...tags];
                                                                     const tempItem = {
                                                                         type: TagType.FILTER,
@@ -130,7 +130,7 @@ const FilterDropDown = () => {
                                                                             newTags.splice(i, 1);
                                                                             newTags.sort((a, b) => {
                                                                                 if (a.type === b.type) {
-                                                                                    return !a.name.localeCompare(b.name);
+                                                                                    return b.filterType.length - a.filterType.length;
                                                                                 }
                                                                                 return b.type.length - a.type.length;
                                                                             });
@@ -142,7 +142,7 @@ const FilterDropDown = () => {
                                                                     newTags.push(tempItem);
                                                                     newTags.sort((a, b) => {
                                                                         if (a.type === b.type) {
-                                                                            return !a.name.localeCompare(b.name);
+                                                                            return b.filterType.length - a.filterType.length;
                                                                         }
                                                                         return b.type.length - a.type.length;
                                                                     });

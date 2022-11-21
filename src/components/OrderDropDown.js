@@ -73,6 +73,17 @@ const OrderDropDown = () => {
                 return b.type.length - a.type.length;
             });
             setTags(tempTags);
+        } else {
+            let tempTags = [...tags];
+            for (let i = 0; i < tempTags.length; i++) {
+                if (tempTags[i].type === TagType.ORDER) {
+                    tempTags.splice(i, 1);
+                }
+            }
+            tempTags.sort((a, b) => {
+                return b.type.length - a.type.length;
+            });
+            setTags(tempTags);
         }
     }, [selected]);
 
@@ -111,6 +122,8 @@ const OrderDropDown = () => {
                                                 if (selected.value === index) {
                                                     if (selected.order === OrderType.ASC) {
                                                         setSelected({name: dropDownItems[index].engName, value: dropDownItems[index].value, order: OrderType.DESC});
+                                                    } else if (selected.order === OrderType.DESC) {
+                                                        setSelected({name: "", value: -1, order: ""});
                                                     } else {
                                                         setSelected({name: dropDownItems[index].engName, value: dropDownItems[index].value, order: OrderType.ASC});
                                                     }
