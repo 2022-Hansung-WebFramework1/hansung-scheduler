@@ -18,8 +18,8 @@ import Moment from "react-moment";
 const TimeContent = ({day, startTime, endTime}) => {
     return (
         <div>
-            <div>{day}</div>
-            <Moment format={"HH:mm "} date={startTime}/>
+            {day}
+            <Moment format={" HH:mm "} date={startTime}/>
              ~
             <Moment format={" HH:mm"} date={endTime}/>
         </div>
