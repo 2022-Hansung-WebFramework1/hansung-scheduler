@@ -1,6 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 
+import CardTable from 'component/CardTable';
+import bigList from 'data/bigList';
+
+import MyScheduler from 'component/MyScheduler';
+
 function App() {
   return (
     <div className="App">
@@ -18,6 +23,15 @@ function App() {
           Learn React
         </a>
       </header>
+      
+      <div>
+        <MyScheduler />
+      </div>
+      <div>
+        <CardTable data={bigList} />
+      </div>
+
+
     </div>
   );
 }
