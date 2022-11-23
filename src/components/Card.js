@@ -28,7 +28,7 @@ const TimeContent = ({day, startTime, endTime}) => {
     )
 }
 
-const Card = ({title, className, tags, professor, classroom, day, startTime, endTime}) => {
+const Card = ({title, className, tags, professor, classroom, day, startTime, endTime, attributes, listeners}) => {
     const [flipped, setFlipped] = useState(false);
     const handlers = useSwipeable({
         onSwiped: (eventData) =>  setFlipped(prev => !prev),
@@ -40,7 +40,7 @@ const Card = ({title, className, tags, professor, classroom, day, startTime, end
     return (
         <ReactCardFlip isFlipped={flipped} flipDirection="horizontal">
             <div {...handlers} style={{...styles.card, ...styles.frontContainer}}>
-                <IoMenu style={styles.icon} size={"1.5em"} color={"lightgrey"}/>
+                <IoMenu style={styles.icon} size={"1.5em"} color={"lightgrey"} {...attributes} {...listeners}/>
                 <div style={styles.title}>{title} [{className}]</div>
                 <div style={styles.tagContainer}>
                     <TagGroup tags={tags.map(tag => ({type: "tag", name: tag}))} />
@@ -68,7 +68,8 @@ const styles = {
         height: 200,
         padding: 24,
         backgroundColor: 'white',
-        borderRadius: '10%'
+        borderRadius: '10%',
+        margin: 10
     },
     frontContainer: {
         display: 'flex',
