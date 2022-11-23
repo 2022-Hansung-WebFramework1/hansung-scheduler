@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import CardTable from 'component/CardTable';
-import bigList from 'data/bigList';
+import bigList from 'test-data/bigList';
 
 import MyScheduler from 'component/MyScheduler';
 
@@ -23,7 +23,7 @@ function App() {
           Learn React
         </a>
       </header>
-      
+
       <div>
         <MyScheduler />
       </div>

@@ -1,17 +1,24 @@
-import bigList from "../data/bigList";
+import bigList from "../test-data/bigList";
 import { FixedSizeGrid } from "react-window";
 
 const CardTable = () => {
     const dataList = bigList
+    let columnCount = 4;
 
     const Cell = ({ columnIndex, rowIndex, style }) => (
-        <div style={{ ...style, ...{ display: "flex", whiteSpace: "pre-wrap" } }}>
-            <img
-                src={dataList[rowIndex * 4 + columnIndex].avatar}
-                alt={dataList[rowIndex * 4 + columnIndex].name}
-                width={50}
+        <div style={{
+            ...style, ...{
+                display: "flex",
+            }
+        }}>
+            <img style={{}}
+                src={dataList[rowIndex * columnCount + columnIndex].avatar}
+                alt={dataList[rowIndex * columnCount + columnIndex].name}
             />
-            <p>{dataList[rowIndex * 4 + columnIndex].name} - {dataList[rowIndex * 4 + columnIndex].email}</p>
+            <p style={{ width: window.innerWidth / columnCount }}>
+                {dataList[rowIndex * columnCount + columnIndex].name}<br />
+                {dataList[rowIndex * columnCount + columnIndex].email}
+            </p>
         </div>
     );
 
@@ -19,9 +26,9 @@ const CardTable = () => {
         <FixedSizeGrid
             height={(window.innerHeight - 20)}
             width={(window.innerWidth - 20)}
-            columnCount={4}
+            columnCount={columnCount}
             rowCount={dataList.length}
-            columnWidth={(window.innerHeight)/2}
+            columnWidth={window.innerWidth / columnCount}
             rowHeight={80}
         >
             {Cell}

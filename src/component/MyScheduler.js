@@ -6,7 +6,7 @@ import {
     Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-import appointments from 'data/today-appointments';
+import appointments from 'test-data/today-appointments';
 
 
 const MyScheduler = () => (
