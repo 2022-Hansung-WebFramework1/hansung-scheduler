@@ -2,12 +2,13 @@ import React from 'react';
 import { Text } from "@nextui-org/react";
 
 import SmoothBorder from "components/SmoothBorder";
+import styles from "assets/Header.module.css";
 
 const Header = () => {
     return (
-        <div style={styles.container}>
-            <div style={styles.gnbMenuLeft}>
-                <a style={styles.title}>
+        <div className={styles.container}>
+            <div className={styles.gnbMenuLeft}>
+                <a className={styles.title}>
                     <Text
                         h1
                         size={50}
@@ -22,9 +23,9 @@ const Header = () => {
                     </Text>
                 </a>
             </div>
-            <div style={styles.gnbWrap}>
-                <div style={styles.gnbMenuRight}>
-                    <div className="info">
+            <div className={styles.gnbWrap}>
+                <div className={styles.gnbMenuRight}>
+                    <div className={styles.info}>
                         <SmoothBorder content={"김"} size={50} />
                     </div>
                 </div>
@@ -34,29 +35,3 @@ const Header = () => {
 };
 
 export default Header;
-
-const styles = {
-    container: {
-        display: "flex",
-        justifyContent: "space-between",
-    },
-    title: {
-        display: "flex",
-        justifyContent: "center"
-    },
-    gnbWrap: {
-        display: "flex",
-        alignSelf: "center"
-    },
-    gnbMenuRight: {
-        marginRight: "8vw"
-    },
-    gnbMenuLeft: {
-        marginLeft: "8vw"
-    },
-    info: {
-        display: "flex",
-        flexDirection: "row",
-        cursor: "pointer",
-    }
-}

@@ -1,46 +1,45 @@
 import React from 'react';
+import {FiArrowUp} from "react-icons/fi";
+import { TagType, OrderType } from "../types";
+import {useRecoilState} from "recoil";
+import {tagsState} from "states";
+import styles from 'assets/Tag.module.css'
 
 const Tag = ({ item }) => {
-    if (item.type === 'filter') {
+    const [tags, setTags] = useRecoilState(tagsState);
+
+    if (item.type === TagType.FILTER) {
         return (
-            <div style={styles.container}>
+            <div className={styles.container}>
                 { item.name }
             </div>
         )
-    } else {
+    } else if (item.type === TagType.ORDER) {
         return (
-            <div style={styles.tag}>
-                { item.name }
+            <div
+                className={styles.container}
+                onClick={() => {
+                    const newTags = tags.map((tag) => {
+                        if (tag.type === TagType.ORDER) {
+                            return {
+                                ...tag,
+                                order: tag.order === OrderType.ASC ? OrderType.DESC : OrderType.ASC
+                            }
+                        }
+                        return tag;
+                    });
+                    setTags(newTags);
+                }}
+            >
+                <div>{ item.name }</div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginLeft: 4 }}>
+                    {
+                        <FiArrowUp style={{rotate: item.order === OrderType.ASC ? "0deg" : "180deg", transition: "all 0.4s"}}/>
+                    }
+                </div>
             </div>
         )
     }
 };
 
 export default Tag;
-
-const styles = {
-    container : {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: 88,
-        height: 28,
-        border: "1px solid #D9D9D9",
-        borderRadius: 200,
-        backgroundColor: "white",
-        fontSize: 14,
-        marginRight: 10
-    },
-    tag : {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: 64,
-        height: 22,
-        border: "1px solid #D9D9D9",
-        borderRadius: 200,
-        backgroundColor: "white",
-        fontSize: 11,
-        marginRight: 10
-    }
-}
