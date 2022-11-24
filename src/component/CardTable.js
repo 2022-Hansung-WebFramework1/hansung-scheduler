@@ -12,8 +12,8 @@ const CardTable = () => {
             }
         }}>
             <img style={{}}
-                src={dataList[rowIndex * columnCount + columnIndex].avatar}
-                alt={dataList[rowIndex * columnCount + columnIndex].name}
+                 src={dataList[rowIndex * columnCount + columnIndex].avatar}
+                 alt={dataList[rowIndex * columnCount + columnIndex].name}
             />
             <p style={{ width: window.innerWidth / columnCount }}>
                 {dataList[rowIndex * columnCount + columnIndex].name}<br />
