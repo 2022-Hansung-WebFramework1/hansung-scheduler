@@ -1,0 +1,7 @@
+.CardTable {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    transition: all 0.2s;
+}

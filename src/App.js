@@ -1,18 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
 
-import CardTable from 'component/CardTable';
-import bigList from 'test-data/bigList';
-
-import MyScheduler from 'component/MyScheduler';
+import { NextUIProvider } from "@nextui-org/react";
+import Header from "component/MainPage/Header";
+import Background from "component/MainPage/Background";
+import Main from "page/Main";
+import { RecoilRoot } from "recoil";
 
 function App() {
-    return (
-        <div className="App">
-            <MyScheduler />
-            <CardTable data={bigList} />
-        </div>
-    );
+  return (
+    <div className="App">
+      <RecoilRoot>
+        <NextUIProvider>
+          <Header />
+
+          <Main />
+
+          <Background />
+        </NextUIProvider>
+      </RecoilRoot>
+    </div>
+  );
 }
 
 export default App;
