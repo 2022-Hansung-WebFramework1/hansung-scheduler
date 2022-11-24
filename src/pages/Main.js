@@ -7,6 +7,7 @@ import {useRecoilValue} from "recoil";
 import {tagsState} from "states";
 
 import styles from "assets/Main.module.css";
+import CardGrid from "../components/CardGrid";
 
 const Main = () => {
     const tags = useRecoilValue(tagsState);
@@ -21,6 +22,7 @@ const Main = () => {
             <OrderDropDown />
             <FilterDropDown />
             <Search />
+            <CardGrid/>
         </div>
     );
 };
