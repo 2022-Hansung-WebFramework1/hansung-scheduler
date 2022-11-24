@@ -20,7 +20,8 @@
     background-color: #DDF6FF;
     border-radius: 400vmax / 130vmax;
     rotate: -20deg;
-    position: absolute;
+    position: relative;
     left: -14vw;
-    top: 58vh;
+    top: -58vh;
+    z-index: 2;
 }
