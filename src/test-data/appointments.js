@@ -4,7 +4,7 @@ export const appointments = [
         startDate: new Date(2022, 11, 25, 9, 35),
         endDate: new Date(2022, 11, 25, 11, 30),
         id: 0,
-        location: 'Room 1',
+        location: 'Room 1', 
     }, {
         title: 'Book Flights to San Fran for Sales Trip',
         startDate: new Date(2022, 11, 25, 12, 11),
