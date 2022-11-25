@@ -11,10 +11,11 @@ import {
     arrayMove, rectSortingStrategy,
     SortableContext,
     sortableKeyboardCoordinates,
-    verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 
 import {SortableItem} from 'components/SortableItem';
+
+import styles from "assets/CardGrid.module.css";
 
 const CardGrid = () => {
     const [activeId, setActiveId] = useState(null);
@@ -50,7 +51,7 @@ const CardGrid = () => {
             onDragEnd={handleDragEnd}
             onDragStart={handleDragStart}
         >
-            <div style={styles.gridContainer}>
+            <div className={styles.container}>
                 <SortableContext
                     items={items}
                     strategy={rectSortingStrategy}
@@ -62,15 +63,6 @@ const CardGrid = () => {
 
         </DndContext>
     );
-}
-
-const styles = {
-    gridContainer: {
-        width: "100%",
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "flex-start"
-    }
 }
 
 export default CardGrid;

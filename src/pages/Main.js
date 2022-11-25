@@ -18,10 +18,14 @@ const Main = () => {
 
     return (
         <div className={styles.container}>
+            <div className={styles.dropdownContainer}>
+                <OrderDropDown />
+                <FilterDropDown />
+            </div>
             <TagGroup tags={tags} />
-            <OrderDropDown />
-            <FilterDropDown />
-            <Search />
+
+            {/*<Search />*/}
+
             <CardGrid/>
         </div>
     );

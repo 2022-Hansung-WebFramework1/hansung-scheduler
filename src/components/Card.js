@@ -5,6 +5,8 @@ import TagGroup from "./TagGroup";
 import Moment from "react-moment";
 import { useSwipeable } from 'react-swipeable';
 
+import styles from "assets/Card.module.css";
+
 /**
  *
  * @param   {string} title 제목
@@ -39,20 +41,20 @@ const Card = ({title, className, tags, professor, classroom, day, startTime, end
 
     return (
         <ReactCardFlip isFlipped={flipped} flipDirection="horizontal">
-            <div {...handlers} style={{...styles.card, ...styles.frontContainer}}>
-                <IoMenu style={styles.icon} size={"1.5em"} color={"lightgrey"} {...attributes} {...listeners}/>
-                <div style={styles.title}>{title} [{className}]</div>
-                <div style={styles.tagContainer}>
+            <div {...handlers} className={`${styles.card} ${styles.frontContainer}`}>
+                <IoMenu className={styles.icon} size={"1.5em"} color={"lightgrey"} {...attributes} {...listeners}/>
+                <div className={styles.title}>{title} [{className}]</div>
+                <div className={styles.tagContainer}>
                     <TagGroup tags={tags.map(tag => ({type: "tag", name: tag}))} />
                 </div>
-                <div style={styles.contentFont}>{professor}</div>
-                <div style={styles.contentFont}>{classroom}</div>
-                <div style={styles.contentFont}>
+                <div className={styles.contentFont}>{professor}</div>
+                <div className={styles.contentFont}>{classroom}</div>
+                <div className={styles.contentFont}>
                     <TimeContent day={day} startTime={startTime} endTime={endTime}/>
                 </div>
 
             </div>
-            <div {...handlers} style={{...styles.card, ...styles.frontContainer}}>b</div>
+            <div {...handlers} className={`${styles.card} ${styles.frontContainer}`}>b</div>
         </ReactCardFlip>
 
 
@@ -61,50 +63,3 @@ const Card = ({title, className, tags, professor, classroom, day, startTime, end
 }
 
 export default Card;
-
-const styles = {
-    card: {
-        width: 300,
-        height: 200,
-        padding: 24,
-        backgroundColor: 'white',
-        borderRadius: '10%',
-        margin: 10
-    },
-    frontContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-around',
-
-    },
-    backContainer: {
-    },
-    title: {
-        color: 'black',
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginTop: 5,
-        marginBottom: 10
-    },
-    tagContainer: {
-        marginBottom: 5
-    },
-    professor: {
-
-    },
-    classroom: {
-
-    },
-    time: {
-
-    },
-    icon: {
-        position: 'absolute',
-        top: 15,
-        right: 15,
-    },
-    contentFont: {
-        color: 'black',
-        fontSize: 14
-    }
-}
