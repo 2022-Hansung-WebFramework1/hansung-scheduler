@@ -22,7 +22,10 @@ const Main = () => {
                 <OrderDropDown />
                 <FilterDropDown />
             </div>
-            <TagGroup tags={tags} />
+
+            <div className={styles.tagContainer}>
+                <TagGroup tags={tags} />
+            </div>
 
             {/*<Search />*/}
 

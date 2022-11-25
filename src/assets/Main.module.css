@@ -13,4 +13,9 @@
     width: 240px;
     justify-content: space-between;
     margin-bottom: 20px;
+    align-self: flex-end;
+}
+
+.tagContainer {
+    margin-bottom: 16px;
 }

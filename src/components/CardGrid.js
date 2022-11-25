@@ -57,7 +57,6 @@ const CardGrid = () => {
                     strategy={rectSortingStrategy}
                 >
                     {items.map(id => <SortableItem key={id} id={id} />)}
-
                 </SortableContext>
             </div>
 
