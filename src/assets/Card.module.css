@@ -1,12 +1,10 @@
 .card {
-    min-width: 240px;
-    max-width: 300px;
-    width: 18vw;
+    width: 280px;
     height: 200px;
     padding: 24px;
     background-color: white;
     border-radius: 10%;
-    margin: 16px;
+    margin: 8px;
 }
 
 .frontContainer {

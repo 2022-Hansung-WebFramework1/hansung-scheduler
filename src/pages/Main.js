@@ -18,18 +18,24 @@ const Main = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.dropdownContainer}>
-                <OrderDropDown />
-                <FilterDropDown />
+            <div className={styles.calenderContainer}>
+                {/* Add Calendar here */}
             </div>
 
-            <div className={styles.tagContainer}>
-                <TagGroup tags={tags} />
+            <div className={styles.bottomContainer}>
+                <div className={styles.dropdownContainer}>
+                    <OrderDropDown />
+                    <FilterDropDown />
+                </div>
+
+                <div className={styles.tagContainer}>
+                    <TagGroup tags={tags} />
+                </div>
+
+                {/*<Search />*/}
+
+                <CardGrid />
             </div>
-
-            {/*<Search />*/}
-
-            <CardGrid/>
         </div>
     );
 };
