@@ -39,8 +39,8 @@ const CardGrid = () => {
         if (active !== over) {
             setItems((items) => {
                 console.log(active, over);
-                const oldIndex = items.findIndex((item) => item.id == active.id);
-                const newIndex = items.findIndex((item) => item.id == over.id);
+                const oldIndex = items.findIndex((item) => item.id === active.id);
+                const newIndex = items.findIndex((item) => item.id === over.id);
 
                 return arrayMove(items, oldIndex, newIndex);
             });

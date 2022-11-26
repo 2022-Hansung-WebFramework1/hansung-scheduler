@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiArrowUp } from "react-icons/fi";
-import { TagType, OrderType } from "../types";
+import { TagType, OrderType } from "types";
 import { useRecoilState } from "recoil";
 import { tagsState } from "states";
 import styles from 'assets/Tag.module.css'

@@ -3,7 +3,7 @@ import styles from 'assets/FilterDropDown.module.css';
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import { useRecoilState } from "recoil";
 import { tagsState } from "states";
-import { FilterType, TagType } from "../types";
+import { FilterType, TagType } from "types";
 
 const dropDownItems = [
     {
