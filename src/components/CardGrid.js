@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     DndContext,
     closestCenter,
@@ -16,6 +16,8 @@ import { SortableItem } from 'components/SortableItem';
 
 import styles from "assets/CardGrid.module.css";
 import data from "data.json";
+import {useRecoilState} from "recoil";
+import {itemsState} from "../states";
 
 const CardGrid = () => {
     const [activeId, setActiveId] = useState(null);
