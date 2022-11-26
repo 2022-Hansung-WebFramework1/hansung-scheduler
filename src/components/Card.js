@@ -6,6 +6,7 @@ import Moment from "react-moment";
 import { useSwipeable } from 'react-swipeable';
 
 import styles from "assets/Card.module.css";
+import {TagType} from "types";
 
 /**
  *
@@ -45,7 +46,7 @@ const Card = ({title, className, tags, professor, classroom, day, startTime, end
                 <IoMenu className={styles.icon} size={"1.5em"} color={"lightgrey"} {...attributes} {...listeners}/>
                 <div className={styles.title}>{title} [{className}]</div>
                 <div className={styles.tagContainer}>
-                    <TagGroup tags={tags.map(tag => ({type: "tag", name: tag}))} />
+                    <TagGroup tags={tags.map(tag => ({type: TagType.TAG, name: tag}))} />
                 </div>
                 <div className={styles.contentFont}>{professor}</div>
                 <div className={styles.contentFont}>{classroom}</div>

@@ -39,6 +39,12 @@ const Tag = ({ item }) => {
                 </div>
             </div>
         )
+    } else if (item.type === TagType.TAG) {
+        return (
+            <div className={styles.container} style={{ width: "78px", height: "24px" }}>
+                { item.name }
+            </div>
+        )
     }
 };
 

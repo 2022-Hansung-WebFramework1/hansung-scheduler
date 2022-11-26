@@ -1,6 +1,7 @@
 export const TagType = {
     FILTER: 'filter',
-    ORDER: 'order'
+    ORDER: 'order',
+    TAG: 'tag'
 }
 
 export const FilterType = {
