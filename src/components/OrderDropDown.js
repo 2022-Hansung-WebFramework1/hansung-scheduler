@@ -1,9 +1,9 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from 'assets/OrderDropDown.module.css'
-import {FiArrowUp, FiChevronDown} from "react-icons/fi";
-import {TagType, OrderType} from "types";
-import {useRecoilState} from "recoil";
-import {tagsState} from "states";
+import { FiArrowUp, FiChevronDown } from "react-icons/fi";
+import { TagType, OrderType } from "types";
+import { useRecoilState } from "recoil";
+import { tagsState } from "states";
 
 const dropDownItems = [
     {
@@ -25,7 +25,7 @@ const dropDownItems = [
 
 const OrderDropDown = () => {
     const [open, setOpen] = useState(false);
-    const [selected, setSelected] = useState({name: "", value: -1, order: ""});
+    const [selected, setSelected] = useState({ name: "", value: -1, order: "" });
 
     const dropdownButtonRef = useRef(null);
     const dropdownRef = useRef(null);
@@ -121,14 +121,14 @@ const OrderDropDown = () => {
 
                                                 if (selected.value === index) {
                                                     if (selected.order === OrderType.ASC) {
-                                                        setSelected({name: dropDownItems[index].engName, value: dropDownItems[index].value, order: OrderType.DESC});
+                                                        setSelected({ name: dropDownItems[index].engName, value: dropDownItems[index].value, order: OrderType.DESC });
                                                     } else if (selected.order === OrderType.DESC) {
-                                                        setSelected({name: "", value: -1, order: ""});
+                                                        setSelected({ name: "", value: -1, order: "" });
                                                     } else {
-                                                        setSelected({name: dropDownItems[index].engName, value: dropDownItems[index].value, order: OrderType.ASC});
+                                                        setSelected({ name: dropDownItems[index].engName, value: dropDownItems[index].value, order: OrderType.ASC });
                                                     }
                                                 } else {
-                                                    setSelected({name: dropDownItems[index].engName, value: dropDownItems[index].value, order: OrderType.ASC});
+                                                    setSelected({ name: dropDownItems[index].engName, value: dropDownItems[index].value, order: OrderType.ASC });
                                                 }
                                                 dropdownItemRef.current[index].className = styles.dropdownItemSelected;
                                             }}
@@ -153,7 +153,7 @@ const OrderDropDown = () => {
                                             ref={ref => dropdownItemRef.current[index] = ref}
                                         >
                                             <div>{item.name}</div>
-                                            {(selected.name === item.engName) && <FiArrowUp style={{rotate: selected.order === OrderType.ASC ? "0deg" : "180deg", transition: "all 0.4s"}} />}
+                                            {(selected.name === item.engName) && <FiArrowUp style={{ rotate: selected.order === OrderType.ASC ? "0deg" : "180deg", transition: "all 0.4s" }} />}
                                         </div>
                                     )
                                 })

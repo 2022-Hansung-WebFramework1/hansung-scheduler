@@ -21,7 +21,7 @@ const CardTable = () => {
             width={(window.innerWidth - 20)}
             columnCount={4}
             rowCount={dataList.length}
-            columnWidth={(window.innerHeight)/2}
+            columnWidth={(window.innerHeight) / 2}
             rowHeight={80}
         >
             {Cell}

@@ -1,6 +1,6 @@
 import React from 'react';
-import {useSortable} from '@dnd-kit/sortable';
-import {CSS} from '@dnd-kit/utilities';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import Card from "components/Card";
 
 export const SortableItem = (props) => {
@@ -11,7 +11,7 @@ export const SortableItem = (props) => {
         transform,
         transition,
         isDragging
-    } = useSortable({id: props.id});
+    } = useSortable({ id: props.id });
 
     const style = {
         transform: CSS.Transform.toString(transform),

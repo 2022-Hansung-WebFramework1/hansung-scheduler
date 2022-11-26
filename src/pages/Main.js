@@ -1,13 +1,14 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Search from "components/Search";
 import TagGroup from "components/TagGroup";
 import OrderDropDown from "components/OrderDropDown";
 import FilterDropDown from "components/FilterDropDown";
-import {useRecoilValue} from "recoil";
-import {tagsState} from "states";
+import { useRecoilValue } from "recoil";
+import { tagsState } from "states";
 
 import styles from "assets/Main.module.css";
 import CardGrid from "../components/CardGrid";
+import MyScheduler from 'components/MyScheduler';
 
 const Main = () => {
     const tags = useRecoilValue(tagsState);
@@ -19,7 +20,7 @@ const Main = () => {
     return (
         <div className={styles.container}>
             <div className={styles.calenderContainer}>
-                {/* Add Calendar here */}
+                {<MyScheduler />}
             </div>
 
             <div className={styles.bottomContainer}>
@@ -32,7 +33,7 @@ const Main = () => {
                     <TagGroup tags={tags} />
                 </div>
 
-                {/*<Search />*/}
+                {<Search />}
 
                 <CardGrid />
             </div>

@@ -3,7 +3,7 @@ import { SmoothCorners } from "react-smooth-corners";
 
 const SmoothBorder = ({
     content,
-    size=50
+    size = 50
 }) => {
     return (
         <SmoothCorners

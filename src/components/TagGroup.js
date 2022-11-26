@@ -2,7 +2,7 @@ import React from 'react';
 import Tag from "components/Tag";
 import styles from "assets/TagGroup.module.css";
 
-const TagGroup = ({ tags=[] }) => {
+const TagGroup = ({ tags = [] }) => {
     return (
         <div className={styles.container}>
             {

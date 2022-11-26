@@ -8,10 +8,9 @@ import {
 
 import appointments from 'data/today-appointments';
 
-
 const MyScheduler = () => (
     <Paper>
-        <Scheduler data={appointments} height={660}>
+        <Scheduler data={appointments} >
             <WeekView startDayHour={9} endDayHour={19} />
             <Appointments />
         </Scheduler>
