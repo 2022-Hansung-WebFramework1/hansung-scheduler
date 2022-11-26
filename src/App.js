@@ -1,19 +1,27 @@
+import './App.css';
+
 import { NextUIProvider } from "@nextui-org/react";
-import Header from "components/Header";
-import Background from "components/Background";
-import Main from "pages/Main";
-import {RecoilRoot} from "recoil";
+import Header from "page/Section/Header";
+import Nav from 'page/Section/Nav';
+import Main from "page/Main";
+import { RecoilRoot } from "recoil";
+import Background from 'page/Section/Background';
 
 function App() {
-    return (
-        <RecoilRoot>
-            <NextUIProvider>
-                <Header />
-                <Main />
-                <Background />
-            </NextUIProvider>
-        </RecoilRoot>
-    );
+  return (
+    <div className="App">
+      <RecoilRoot>
+
+        <NextUIProvider>
+          <Background />
+          <Header />
+          <Nav />
+          <Main />
+        </NextUIProvider>
+
+      </RecoilRoot>
+    </div>
+  );
 }
 
 export default App;
