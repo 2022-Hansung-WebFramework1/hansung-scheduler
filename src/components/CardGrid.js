@@ -65,12 +65,13 @@ const CardGrid = () => {
                         items.map((item) => {
                             return (
                                 <SortableItem
-                                    key={item.id}
+                                    key={`item-${item.id}`}
                                     id={item.id}
                                     item={item}
                                 />
                             )
-                        })}
+                        })
+                    }
                 </SortableContext>
             </div>
 
