@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+
+import React, { useState } from 'react';
 import {
     DndContext,
     closestCenter,
@@ -12,14 +13,16 @@ import {
     SortableContext,
     sortableKeyboardCoordinates,
 } from '@dnd-kit/sortable';
-import {SortableItem} from 'components/SortableItem';
+import { SortableItem } from 'components/SortableItem';
 
 import styles from "assets/CardGrid.module.css";
-import data from "data.json";
+
+import { useRecoilState, useRecoilValue } from "recoil";
+import { itemsState } from "../states";
 
 const CardGrid = () => {
     const [activeId, setActiveId] = useState(null);
-    const [items, setItems] = useState(JSON.parse(JSON.stringify(data)));
+    const [items, setItems] = useRecoilValu(itemsState);
     const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(KeyboardSensor, {

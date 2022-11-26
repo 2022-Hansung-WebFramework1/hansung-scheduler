@@ -1,9 +1,9 @@
 import { useRecoilValue } from "recoil";
 import { tagsState } from "../states";
-import {inputRef}
+
 
 const getOrderedAndFilteredItems = (oldItems, setItems) => {
-    
+
     const tags = useRecoilValue(tagsState);
 
     let newItems = oldItems;
