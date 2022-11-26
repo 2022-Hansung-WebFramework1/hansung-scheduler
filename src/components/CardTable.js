@@ -1,4 +1,4 @@
-import bigList from "../data/bigList";
+import bigList from "data/bigList";
 import { FixedSizeGrid } from "react-window";
 
 const CardTable = () => {

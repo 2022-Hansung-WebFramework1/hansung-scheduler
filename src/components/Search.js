@@ -3,7 +3,7 @@ import { FiSearch } from "react-icons/fi";
 import styles from "assets/Search.module.css";
 
 import { useRecoilState } from "recoil";
-import { searchState } from "../states";
+import { searchState } from "states";
 
 const Search = () => {
     const inputRef = useRef("");

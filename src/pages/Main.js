@@ -7,7 +7,7 @@ import { useRecoilValue } from "recoil";
 import { tagsState } from "states";
 
 import styles from "assets/Main.module.css";
-import CardGrid from "../components/CardGrid";
+import CardGrid from "components/CardGrid";
 import MyScheduler from 'components/MyScheduler';
 
 const Main = () => {

@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import ReactCardFlip from "react-card-flip";
 import { IoMenu } from 'react-icons/io5';
-import TagGroup from "./TagGroup";
+import TagGroup from "components/TagGroup";
 import Moment from "react-moment";
 import { useSwipeable } from 'react-swipeable';
 
