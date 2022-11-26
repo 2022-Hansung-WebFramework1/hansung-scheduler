@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState} from 'react';
 import {
     DndContext,
     closestCenter,
@@ -15,9 +15,7 @@ import {
 import { SortableItem } from 'components/SortableItem';
 
 import styles from "assets/CardGrid.module.css";
-
-import { useRecoilState } from "recoil";
-import { itemsState } from "../states";
+import data from "data.json";
 
 const CardGrid = () => {
     const [activeId, setActiveId] = useState(null);
@@ -39,8 +37,8 @@ const CardGrid = () => {
         if (active !== over) {
             setItems((items) => {
                 console.log(active, over);
-                const oldIndex = items.findIndex((item) => item.id === active.id);
-                const newIndex = items.findIndex((item) => item.id === over.id);
+                const oldIndex = items.data.indexOf(active.id);
+                const newIndex = items.data.indexOf(over.id);
 
                 return arrayMove(items, oldIndex, newIndex);
             });
