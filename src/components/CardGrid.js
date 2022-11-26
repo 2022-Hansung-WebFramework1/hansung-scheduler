@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     DndContext,
     closestCenter,
@@ -17,12 +16,12 @@ import { SortableItem } from 'components/SortableItem';
 
 import styles from "assets/CardGrid.module.css";
 
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { itemsState } from "../states";
 
 const CardGrid = () => {
     const [activeId, setActiveId] = useState(null);
-    const [items, setItems] = useRecoilValu(itemsState);
+    const [items, setItems] = useRecoilState(itemsState);
     const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(KeyboardSensor, {
@@ -40,13 +39,17 @@ const CardGrid = () => {
         if (active !== over) {
             setItems((items) => {
                 console.log(active, over);
-                const oldIndex = items.data.indexOf(active.id);
-                const newIndex = items.data.indexOf(over.id);
+                const oldIndex = items.findIndex((item) => item.id == active.id);
+                const newIndex = items.findIndex((item) => item.id == over.id);
 
                 return arrayMove(items, oldIndex, newIndex);
             });
         }
     }
+
+    useEffect(() => {
+        console.log(items);
+    }, []);
 
     return (
         <DndContext
@@ -57,19 +60,20 @@ const CardGrid = () => {
         >
             <div className={styles.container}>
                 <SortableContext
-                    items={items.data}
+                    items={items}
                     strategy={rectSortingStrategy}
                 >
                     {
-                        items.data.map((item, index) => {
+                        items.map((item) => {
                             return (
                                 <SortableItem
-                                    key={index}
-                                    id={index}
+                                    key={`item-${item.id}`}
+                                    id={item.id}
                                     item={item}
                                 />
                             )
-                        })}
+                        })
+                    }
                 </SortableContext>
             </div>
 
