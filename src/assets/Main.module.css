@@ -9,6 +9,8 @@
 
 .calenderContainer {
 
+    display: flex;
+    margin: 1% 1% 1% 1%;
 }
 
 .bottomContainer {
