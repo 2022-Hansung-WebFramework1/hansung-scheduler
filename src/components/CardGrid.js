@@ -12,12 +12,11 @@ import {
     SortableContext,
     sortableKeyboardCoordinates,
 } from '@dnd-kit/sortable';
-import { SortableItem } from 'components/SortableItem';
+import {SortableItem} from 'components/SortableItem';
 
 import styles from "assets/CardGrid.module.css";
-import data from "data.json";
+import {itemsState} from "states";
 import {useRecoilState} from "recoil";
-import {itemsState} from "../states";
 
 const CardGrid = () => {
     const [activeId, setActiveId] = useState(null);
@@ -39,17 +38,13 @@ const CardGrid = () => {
         if (active !== over) {
             setItems((items) => {
                 console.log(active, over);
-                const oldIndex = items.data.indexOf(active.id);
-                const newIndex = items.data.indexOf(over.id);
+                const oldIndex = items.findIndex((item) => item.id === active.id);
+                const newIndex = items.findIndex((item) => item.id === over.id);
 
                 return arrayMove(items, oldIndex, newIndex);
             });
         }
     }
-
-    useEffect(() => {
-        console.log(items);
-    }, []);
 
     return (
         <DndContext
