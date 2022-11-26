@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiArrowUp } from "react-icons/fi";
+import {FiArrowUp, FiX} from "react-icons/fi";
 import { TagType, OrderType } from "types";
 import { useRecoilState } from "recoil";
 import { tagsState } from "states";
@@ -11,7 +11,17 @@ const Tag = ({ item }) => {
     if (item.type === TagType.FILTER) {
         return (
             <div className={styles.container}>
-                {item.name}
+                <div>{ item.name }</div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginLeft: 4 }}>
+                    <FiX
+                        color={"#ea5a5a"}
+                        onClick={() => {
+                            setTags((tags) => {
+                                return tags.filter((tag) => tag.name !== item.name);
+                            });
+                        }}
+                    />
+                </div>
             </div>
         )
     } else if (item.type === TagType.ORDER) {
