@@ -15,11 +15,13 @@ import {
 import {SortableItem} from 'components/SortableItem';
 
 import styles from "assets/CardGrid.module.css";
-import data from "data.json";
+
+import {useRecoilState} from "recoil";
+import {itemsState} from "../states";
 
 const CardGrid = () => {
     const [activeId, setActiveId] = useState(null);
-    const [items, setItems] = useState(JSON.parse(JSON.stringify(data)).data);
+    const [items, setItems] = useRecoilState(itemsState);
     const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(KeyboardSensor, {
