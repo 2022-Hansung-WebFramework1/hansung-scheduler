@@ -61,7 +61,6 @@ const FilterDropDown = () => {
                 const { filterType, name } = tag;
 
                 if (filterType == FilterType.PROFESSOR) {
-                    stdFlag.map((cur, i) => cur *= [0, 1, 1][i])
                     item = {
                         ...item,
                         filterFlag: item.filterFlag.map(
