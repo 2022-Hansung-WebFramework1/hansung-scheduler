@@ -3,7 +3,7 @@ import styles from 'assets/FilterDropDown.module.css';
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import { useRecoilState } from "recoil";
 import { itemsState, tagsState } from "states";
-import {FilterType, StatusType, TagType} from "types";
+import { FilterType, StatusType, TagType } from "types";
 
 const dropDownItems = [
     {
@@ -53,7 +53,7 @@ const FilterDropDown = () => {
     const itemsHandle = useCallback(() => {
         console.log("tags:", tags);
 
-        let newItems = items.map(item => { return { ...item, filterFlag: [1, 1, 1], status: item.status!==StatusType.DRAGGED ? StatusType.SHOWEN : StatusType.DRAGGED} });
+        let newItems = items.map(item => { return { ...item, filterFlag: [1, 1, 1], status: item.status !== StatusType.DRAGGED ? StatusType.SHOWEN : StatusType.DRAGGED } });
 
         // filterFlag considered TagConditions for each Item
         newItems = newItems.map((item) => {
@@ -93,8 +93,9 @@ const FilterDropDown = () => {
 
         // Condition applied for all Tags
         newItems.forEach(item =>
-            item.status &&= item.filterFlag.reduce((ac, cur) => ac *= (cur <= 1) ? true : false, 1
-            )
+            item.status = (item.status !== StatusType.DRAGGED)
+                ? item.filterFlag.reduce((ac, cur) => ac *= (cur <= 1) ? true : false, 1) ? StatusType.SHOWEN : StatusType.HIDDEN
+                : StatusType.DRAGGED
         )
 
         console.log("newItems", newItems);
