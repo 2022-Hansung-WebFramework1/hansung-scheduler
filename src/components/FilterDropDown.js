@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styles from 'assets/FilterDropDown.module.css';
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import { useRecoilState } from "recoil";
-import { tagsState } from "states";
+import { itemsState, tagsState } from "states";
 import { FilterType, TagType } from "types";
 
 const dropDownItems = [
@@ -48,6 +48,62 @@ const FilterDropDown = () => {
     const dropdownRef = useRef(null);
     const [selected, setSelected] = useState([]);
     const [tags, setTags] = useRecoilState(tagsState);
+    const [items, setItems] = useRecoilState(itemsState);
+
+    const itemsHandle = useCallback(() => {
+        console.log("tags:", tags);
+
+        let newItems = items.map(item => { return { ...item, filterFlag: [1, 1, 1], display: true } });
+
+        // filterFlag considered TagConditions for each Item
+        newItems = newItems.map((item) => {
+            tags.forEach((tag) => {
+                const { filterType, name } = tag;
+
+                if (filterType == FilterType.PROFESSOR) {
+                    item = {
+                        ...item,
+                        filterFlag: item.filterFlag.map(
+                            (cur, i) => cur *= (item.prof.includes(name)) ? [0, 1, 1][i] : [1.1, 1, 1][i]
+                        )
+                    };
+                }
+
+                else if (filterType == FilterType.PLACE)
+                    item = {
+                        ...item,
+                        filterFlag: item.filterFlag.map(
+                            (cur, i) => cur *= (item.classroom.includes(name)) ? [1, 0, 1][i] : [1, 1.1, 1][i]
+                        )
+                    };
+
+                else if (filterType == FilterType.CREDIT)
+                    item = {
+                        ...item,
+                        filterFlag: item.filterFlag.map(
+                            (cur, i) => cur *= (name.includes(item.hakjum)) ? [1, 1, 0][i] : [1, 1, 1.1][i]
+                        )
+                    };
+
+                else item = { ...item, filterFlag: [null, null, null] }
+            })
+            return item;
+        })
+
+
+        // Condition applied for all Tags
+        newItems.forEach(item =>
+            item.display &&= item.filterFlag.reduce((ac, cur) => ac *= (cur <= 1) ? true : false, 1
+            )
+        )
+
+        console.log("newItems", newItems);
+        setItems(newItems);
+    }, [items, tags]);
+
+
+
+
 
     // dropdown 외부 클릭 시 닫히도록
     useEffect(() => {
@@ -65,6 +121,10 @@ const FilterDropDown = () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [dropdownRef]);
+
+    useEffect(() => {
+        itemsHandle();
+    }, [tags])
 
     useEffect(() => {
         if (selected.length <= 0) {
