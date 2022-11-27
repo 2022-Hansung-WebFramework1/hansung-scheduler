@@ -53,10 +53,10 @@ const FilterDropDown = () => {
     const itemsHandle = useCallback(() => {
         console.log("tags:",tags);
 
-        let newItems = items.map(item => {return {...item, display: false}});
+        let newItems = items.map(item => {return {...item, display: false}}); // 일단 다 안보이게하고
 
         newItems = newItems.map((item) => {
-            tags.forEach((tag) => {
+            tags.forEach((tag) => { // 각 필터마다 아이템에 필터가 적용되는지 유무 확인
                 const { filterType, name } = tag;
                 switch(filterType) {
                     case FilterType.PROFESSOR:
