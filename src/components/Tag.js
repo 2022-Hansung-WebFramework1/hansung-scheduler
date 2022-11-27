@@ -42,7 +42,7 @@ const Tag = ({ item }) => {
                 }}
             >
                 <div>{item.name}</div>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginLeft: 4 }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginLeft: 8 }}>
                     {
                         <FiArrowUp style={{ rotate: item.order === OrderType.ASC ? "0deg" : "180deg", transition: "all 0.4s" }} />
                     }
