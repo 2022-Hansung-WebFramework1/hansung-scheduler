@@ -9,9 +9,9 @@ export const tagsState = atom({
 export const itemsState = atom({
     key: 'itemsState',
     default: JSON.parse(JSON.stringify(data)).data
-})
+});
 
 export const searchState = atom({
     key: 'searchState',
     default: ""
-})
+});
