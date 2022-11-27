@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import styles from 'assets/FilterDropDown.module.css';
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import { useRecoilState } from "recoil";
-import { tagsState } from "states";
+import {itemsState, tagsState} from "states";
 import { FilterType, TagType } from "types";
 
 const dropDownItems = [
@@ -48,6 +48,29 @@ const FilterDropDown = () => {
     const dropdownRef = useRef(null);
     const [selected, setSelected] = useState([]);
     const [tags, setTags] = useRecoilState(tagsState);
+    const [items, setItems] = useRecoilState(itemsState);
+
+    const itemsHandle = useCallback(() => {
+        console.log("tags:",tags);
+        let newItems = items;
+
+        newItems = items.map(item => {return {...item, display: false}});
+
+        newItems = newItems.map((item) => {
+            tags.forEach((tag) => {
+                const { filterType, name } = tag;
+                switch(filterType) {
+                    case FilterType.PROFESSOR:
+                        console.log("here", item.prof, name);
+                        if(item.prof.includes(name))
+                            item = {...item, display: true};
+                }
+            })
+            return item;
+        })
+        console.log("newItems", newItems);
+        setItems(newItems);
+    }, [items, tags]);
 
     // dropdown 외부 클릭 시 닫히도록
     useEffect(() => {
@@ -65,6 +88,10 @@ const FilterDropDown = () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [dropdownRef]);
+
+    useEffect(() => {
+        itemsHandle();
+    }, [tags])
 
     useEffect(() => {
         if (selected.length <= 0) {
