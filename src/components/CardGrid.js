@@ -8,6 +8,7 @@ import {SortableItem} from 'components/SortableItem';
 import styles from "assets/CardGrid.module.css";
 import {itemsState} from "states";
 import {useRecoilValue} from "recoil";
+import {StatusType} from "../types";
 
 const CardGrid = () => {
 
@@ -23,7 +24,7 @@ const CardGrid = () => {
                 >
                     {
                         items.map((item) => {
-                            if(item.display) {
+                            if(item.status === StatusType.SHOWEN) {
                                 return (
                                     <SortableItem
                                         key={`item-${item.id}`}

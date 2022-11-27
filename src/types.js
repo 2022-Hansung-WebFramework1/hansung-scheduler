@@ -14,3 +14,9 @@ export const OrderType = {
     DESC: 'desc',
     ASC: 'asc'
 }
+
+export const StatusType = {
+    HIDDEN: 'hidden',
+    SHOWEN: 'showen',
+    DRAGGED: 'dragged'
+}
