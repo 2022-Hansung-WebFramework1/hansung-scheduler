@@ -53,7 +53,7 @@ const FilterDropDown = () => {
     const itemsHandle = useCallback(() => {
         console.log("tags:", tags);
 
-        let newItems = items.map(item => { return { ...item, filterFlag: [1, 1, 1], display: false } });
+        let newItems = items.map(item => { return { ...item, filterFlag: [1, 1, 1], display: true } });
 
         // filterFlag considered TagConditions for each Item
         newItems = newItems.map((item) => {
@@ -93,7 +93,7 @@ const FilterDropDown = () => {
 
         // Condition applied for all Tags
         newItems.forEach(item =>
-            item.display = item.filterFlag.reduce((ac, cur) => ac *= (cur <= 1) ? true : false, 1
+            item.display &&= item.filterFlag.reduce((ac, cur) => ac *= (cur <= 1) ? true : false, 1
             )
         )
 
