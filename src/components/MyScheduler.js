@@ -12,6 +12,8 @@ import {
 import appointments from 'data/today-appointments';
 
 import { DragDropProvider } from '@devexpress/dx-react-scheduler-material-ui';
+import {useDroppable} from "@dnd-kit/core";
+import {CSS} from "@dnd-kit/utilities";
 
 const PREFIX = 'MyScheduler';
 
@@ -76,27 +78,45 @@ const DayScaleCell = (props) => {
 
 
 
-const MyScheduler = () => (
-    <Paper>
-        <Scheduler
-            data={appointments}
-            firstDayOfWeek={1}
-            locale='ko-KO'
-        >
+const MyScheduler = (props) => {
+    const {id} = props;
 
-            <ViewState
-                currentDate={window.currentDate}
-            />
+    const {isOver, setNodeRef} = useDroppable({
+        id: id ?? "asdfjkl;",
+    });
 
-            <WeekView
-                startDayHour={9} endDayHour={19}
-                timeTableCellComponent={TimeTableCell}
-                dayScaleCellComponent={DayScaleCell}
-            />
+    const style = {
+        zIndex: isOver ? "100" : "auto",
+        opacity: isOver ? 0.9 : 1
+    };
 
-            <Appointments />
-        </Scheduler>
-    </Paper>
-);
+    return (
+        <div ref={setNodeRef} style={style}>
+            <Paper>
+                <Scheduler
+                    data={appointments}
+                    firstDayOfWeek={1}
+                    locale='ko-KO'
+                >
+
+                    <ViewState
+                        currentDate={window.currentDate}
+                    />
+
+                    <WeekView
+                        startDayHour={9} endDayHour={19}
+                        timeTableCellComponent={TimeTableCell}
+                        dayScaleCellComponent={DayScaleCell}
+                    />
+
+                    <Appointments />
+                </Scheduler>
+            </Paper>
+        </div>
+
+    )
+}
+
+
 
 export default MyScheduler;
