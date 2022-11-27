@@ -54,7 +54,6 @@ const FilterDropDown = () => {
         console.log("tags:", tags);
 
         let newItems = items.map(item => { return { ...item, filterFlag: [1, 1, 1], display: false } });
-        let stdFlag = [1, 1, 1];
 
         // filterFlag considered TagConditions for each Item
         newItems = newItems.map((item) => {
@@ -70,7 +69,6 @@ const FilterDropDown = () => {
                         )
                     };
                 }
-
 
                 else if (filterType == FilterType.PLACE)
                     item = {
