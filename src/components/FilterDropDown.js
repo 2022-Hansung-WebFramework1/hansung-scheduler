@@ -52,16 +52,14 @@ const FilterDropDown = () => {
 
     const itemsHandle = useCallback(() => {
         console.log("tags:",tags);
-        let newItems = items;
 
-        newItems = items.map(item => {return {...item, display: false}});
+        let newItems = items.map(item => {return {...item, display: false}});
 
         newItems = newItems.map((item) => {
             tags.forEach((tag) => {
                 const { filterType, name } = tag;
                 switch(filterType) {
                     case FilterType.PROFESSOR:
-                        console.log("here", item.prof, name);
                         if(item.prof.includes(name))
                             item = {...item, display: true};
                 }
