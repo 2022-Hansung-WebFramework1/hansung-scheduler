@@ -4,7 +4,6 @@ import {StatusType} from "./types";
 
 const dataHandling = () => {
     const _data = JSON.parse(JSON.stringify(data)).data;
-
     return _data.map(data => {return {...data, status: StatusType.SHOWEN}});
 }
 
