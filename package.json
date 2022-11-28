@@ -42,7 +42,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env webpack serve --env development",
     "build": "cross-env NODE_ENV=production webpack",
-    "start": "react-scripts start",
+    "start": "cross-env GENERATE_SOURCEMAP=false react-scripts start",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
