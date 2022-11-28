@@ -1,12 +1,14 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import ReactCardFlip from "react-card-flip";
 import { IoMenu } from 'react-icons/io5';
 import TagGroup from "components/TagGroup";
 import Moment from "react-moment";
 import { useSwipeable } from 'react-swipeable';
+import { confirmAlert } from "react-confirm-alert";
 
 import styles from "assets/Card.module.css";
 import { TagType } from "types";
+import Modal from "components/Modal";
 
 /**
  *
@@ -40,12 +42,22 @@ const Card = ({ item, attributes, listeners }) => {
         trackMouse: true
     });
 
+    const handleModalOpen = (item) => {
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                return (
+                    <Modal onClose={onClose} item={item} />
+                );
+            }
+        })
+    }
+
     return (
         <ReactCardFlip isFlipped={flipped} flipDirection="horizontal">
             <div
                 {...handlers}
                 className={`${styles.card} ${styles.frontContainer}`}
-                onClick={() => setFlipped(prev => !prev)}
+                onClick={() => handleModalOpen(item)}
             >
                 <IoMenu className={styles.icon} size={"1.5em"} color={"lightgrey"} {...attributes} {...listeners} />
                 <div className={styles.title}>{item.kwamokname} [{item.bunban}]</div>

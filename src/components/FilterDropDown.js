@@ -102,10 +102,6 @@ const FilterDropDown = () => {
         setItems(newItems);
     }, [items, tags]);
 
-
-
-
-
     // dropdown 외부 클릭 시 닫히도록
     useEffect(() => {
         function handleClickOutside(event) {
