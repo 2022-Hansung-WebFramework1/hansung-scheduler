@@ -24,6 +24,8 @@ const dropDownItems = [
     }
 ]
 
+const convertDay = ["일", "월", "화", "수", "목", "금", "토"]
+
 const OrderDropDown = () => {
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState({ name: "", value: -1, order: "" });
@@ -38,20 +40,37 @@ const OrderDropDown = () => {
     useEffect(() => {
         console.log("selected", selected, items);
         let newItems = [...items];
-        const currentDate = moment().format();
-        const dateISOString = currentDate.split("T")[0];
+        const currentDate = moment();
         if(selected.name === 'time') {
             if(selected.order === OrderType.DESC) {
                 newItems.sort((a,b) => {
-                    const aTime = new Date(`${dateISOString}T${a.startTime}:00`);
-                    const bTime = new Date(`${dateISOString}T${b.startTime}:00`);
+                    const aDate = currentDate.startOf('week').add('days', convertDay.indexOf(a.day));
+                    const aDateISOString = aDate.format().split("T")[0];
+                    const bDate = currentDate.startOf('week').add('days', convertDay.indexOf(b.day));
+                    const bDateISOString = bDate.format().split("T")[0];
+                    const aTime = new Date(`${aDateISOString}T${a.startTime}:00`);
+                    const bTime = new Date(`${bDateISOString}T${b.startTime}:00`);
                     return aTime>bTime ? -1 : aTime<bTime ? 1 : 0;
                 })
             } else {
                 newItems.sort((a,b) => {
-                    const aTime = new Date(`${dateISOString}T${a.startTime}:00`);
-                    const bTime = new Date(`${dateISOString}T${b.startTime}:00`);
+                    const aDate = currentDate.startOf('week').add('days', convertDay.indexOf(a.day));
+                    const aDateISOString = aDate.format().split("T")[0];
+                    const bDate = currentDate.startOf('week').add('days', convertDay.indexOf(b.day));
+                    const bDateISOString = bDate.format().split("T")[0];
+                    const aTime = new Date(`${aDateISOString}T${a.startTime}:00`);
+                    const bTime = new Date(`${bDateISOString}T${b.startTime}:00`);
                     return aTime>bTime ? 1 : aTime<bTime ? -1 : 0;
+                })
+            }
+        } else if(selected.name === 'credit') {
+            if(selected.order === OrderType.DESC) {
+                newItems.sort((a,b) => {
+                    return parseInt(a.hakjum) - parseInt(b.hakjum);
+                })
+            } else {
+                newItems.sort((a,b) => {
+                    return parseInt(b.hakjum) - parseInt(a.hakjum);
                 })
             }
 
