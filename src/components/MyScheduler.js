@@ -37,14 +37,29 @@ const MyScheduler = (props) => {
 
     const commitChanges = ({ added, changed, deleted }) => {
         // console.log(added,changed,deleted);
-        // if (deleted !== undefined) {
-        //     data = data.filter(appointment => appointment.id !== deleted);
-        // }
-        // return { data };
+        if (deleted !== undefined) {
+            console.log(deleted);
+            setItems(prev => {
+                return prev.map(item => {
+                    if(item.id == deleted) {
+                        return {
+                            ...item,
+                            status: StatusType.SHOWEN
+                        }
+                    } else {
+                        return {
+                            ...item
+                        }
+                    }
+                })
+            })
+        }
+        return { data };
     }
 
 
     const dataHandle = useCallback(() => {
+        console.log("dataHandle");
         const currentDate = moment();
         let newItems = items.filter(item => item.status === StatusType.DRAGGED);
         // console.log("currentDate", currentDate.startOf('week').add('days', convertDay.indexOf("월")).toDate());
