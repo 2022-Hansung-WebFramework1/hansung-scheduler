@@ -24,13 +24,13 @@ const Modal = ({ onClose, item }) => {
             <div className={styles.backgroundBlur}></div>
             <div ref={modalRef} className={styles.container}>
                 <div
-                    style={{ position: "absolute", top: 30, right: 30, cursor: "pointer" }}
+                    className={styles.closeButtonContainer}
                     onClick={onClose}
                 >
-                    <FiX size={30} />
+                    <FiX size={20} />
                 </div>
                 <div style={{ marginTop: 48 }}>
-                    <h2>{item.kwamokname}</h2>
+                    <h2 style={{ letterSpacing: "0.05rem" }}>{item.kwamokname}</h2>
                     <div className={styles.modalItemContainer}>
                         <div style={{ marginRight: 60, fontWeight: "bold" }}>
                             <div>분반</div>
