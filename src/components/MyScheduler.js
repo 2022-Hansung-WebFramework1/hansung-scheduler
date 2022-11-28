@@ -80,11 +80,11 @@ const MyScheduler = (props) => {
 
         setData(newItems);
 
-    },[items]);
+    },[JSON.stringify(items)]);
 
     useEffect(() => {
         dataHandle()
-    },[items])
+    },[JSON.stringify(items)])
 
     useEffect(() => {
         console.log("data", data);

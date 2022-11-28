@@ -100,7 +100,7 @@ const FilterDropDown = () => {
 
         console.log("newItems", newItems);
         setItems(newItems);
-    }, [items, tags]);
+    }, [JSON.stringify(items), tags]);
 
     // dropdown 외부 클릭 시 닫히도록
     useEffect(() => {
@@ -121,7 +121,7 @@ const FilterDropDown = () => {
 
     useEffect(() => {
         itemsHandle();
-    }, [tags])
+    }, [JSON.stringify(items), tags])
 
     useEffect(() => {
         if (selected.length <= 0) {
