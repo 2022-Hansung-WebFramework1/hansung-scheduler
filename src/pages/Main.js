@@ -12,6 +12,8 @@ import MyScheduler from 'components/MyScheduler';
 import {closestCenter, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors} from "@dnd-kit/core";
 import {arrayMove, sortableKeyboardCoordinates} from "@dnd-kit/sortable";
 import {StatusType} from "../types";
+import { IoCalendarOutline } from 'react-icons/io5';
+import ScheduleIcon from "../components/ScheduleIcon";
 
 const Main = () => {
     const [activeId, setActiveId] = useState(null);
@@ -38,7 +40,7 @@ const Main = () => {
 
         if (active !== over) {
             console.log(active, over)
-            if(over.id === 'schedule'){
+            if(over.id === 'schedule' || over.id === 'schedule_icon'){
                 setItems(prev => {
                     return prev.map(item => {
                         if(active.id === item.id){
@@ -93,6 +95,10 @@ const Main = () => {
 
 
                     <CardGrid />
+
+                    <ScheduleIcon/>
+
+
                 </div>
             </div>
         </DndContext>
