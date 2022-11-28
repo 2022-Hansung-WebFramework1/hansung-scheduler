@@ -19,7 +19,7 @@ import {useCallback, useEffect, useState} from "react";
 import moment from "moment";
 import {StatusType} from "../types";
 
-const convertDay = ["월", "화", "수", "목", "금", "토", "일"]
+const convertDay = ["일", "월", "화", "수", "목", "금", "토"]
 
 const MyScheduler = (props) => {
     const {id} = props;
@@ -43,32 +43,15 @@ const MyScheduler = (props) => {
         // return { data };
     }
 
-    const makeTodayAppointment = useCallback((startDate, endDate, currentDate, date) => {
-        const days = moment(startDate).diff(endDate, 'days');
-        const nextStartDate = moment(startDate)
-            .year(currentDate.year())
-            .month(currentDate.month())
-            .date(date);
-        const nextEndDate = moment(endDate)
-            .year(currentDate.year())
-            .month(currentDate.month())
-            .date(date + days);
-
-        return {
-            startDate: nextStartDate.toDate(),
-            endDate: nextEndDate.toDate(),
-        };
-    },[]);
-
-
 
     const dataHandle = useCallback(() => {
         const currentDate = moment();
         let newItems = items.filter(item => item.status === StatusType.DRAGGED);
-
+        // console.log("currentDate", currentDate.startOf('week').add('days', convertDay.indexOf("월")).toDate());
         newItems = newItems.map((item) => {
             const date = currentDate.startOf('week').add('days', convertDay.indexOf(item.day));
-            const dateISOString = date.toISOString().split("T")[0];
+            const dateISOString = date.format().split("T")[0];
+            console.log("dateISOString", dateISOString)
             const startDate = new Date(`${dateISOString}T${item.startTime}:00`);
             const endDate = new Date(`${dateISOString}T${item.endTime}:00`)
             return {
