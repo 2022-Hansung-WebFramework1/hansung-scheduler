@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import {EditingState, IntegratedEditing, ViewState} from '@devexpress/dx-react-scheduler';
+import { EditingState, IntegratedEditing, ViewState } from '@devexpress/dx-react-scheduler';
 import {
     Scheduler,
     Appointments,
@@ -11,22 +11,22 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 
 import { DragDropProvider } from '@devexpress/dx-react-scheduler-material-ui';
-import {useDroppable} from "@dnd-kit/core";
-import {CSS} from "@dnd-kit/utilities";
-import {useRecoilState} from "recoil";
-import {itemsState} from "../states";
-import {useCallback, useEffect, useState} from "react";
+import { useDroppable } from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
+import { useRecoilState } from "recoil";
+import { itemsState } from "../states";
+import { useCallback, useEffect, useState } from "react";
 import moment from "moment";
-import {StatusType} from "../types";
+import { StatusType } from "../types";
 
 const convertDay = ["월", "화", "수", "목", "금", "토", "일"]
 
 const MyScheduler = (props) => {
-    const {id} = props;
+    const { id } = props;
     const [items, setItems] = useRecoilState(itemsState);
     const [data, setData] = useState()
 
-    const {isOver, setNodeRef} = useDroppable({
+    const { isOver, setNodeRef } = useDroppable({
         id: id ?? "schedule",
     });
 
@@ -58,7 +58,7 @@ const MyScheduler = (props) => {
             startDate: nextStartDate.toDate(),
             endDate: nextEndDate.toDate(),
         };
-    },[]);
+    }, []);
 
 
 
@@ -82,15 +82,15 @@ const MyScheduler = (props) => {
 
         setData(newItems);
 
-    },[items]);
+    }, [items]);
 
     useEffect(() => {
         dataHandle()
-    },[items])
+    }, [items])
 
     useEffect(() => {
         console.log("data", data);
-    },[data])
+    }, [data])
 
     return (
         <div ref={setNodeRef} style={style}>
@@ -111,8 +111,11 @@ const MyScheduler = (props) => {
                     <IntegratedEditing />
 
                     <WeekView
-                        startDayHour={9} endDayHour={21}
-                        excludedDays={[0,6]}
+                        startDayHour={9} // 시작 시각
+                        endDayHour={21} // 종료 시각
+                        excludedDays={[0, 6]} // 제외할 요일(0:일,월,화,수,목,금,6:토)
+                        cellDuration={30} // 시간 간격
+
                     />
 
                     <Appointments />
