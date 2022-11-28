@@ -121,7 +121,7 @@ const FilterDropDown = () => {
 
     useEffect(() => {
         itemsHandle();
-    }, [JSON.stringify(items), tags])
+    }, [tags])
 
     useEffect(() => {
         if (selected.length <= 0) {

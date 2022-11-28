@@ -16,8 +16,3 @@ export const itemsState = atom({
     key: 'itemsState',
     default: dataHandling()
 });
-
-export const searchState = atom({
-    key: 'searchState',
-    default: ""
-});
