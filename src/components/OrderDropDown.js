@@ -3,7 +3,8 @@ import styles from 'assets/OrderDropDown.module.css'
 import { FiArrowUp, FiChevronDown } from "react-icons/fi";
 import { TagType, OrderType } from "types";
 import { useRecoilState } from "recoil";
-import { tagsState } from "states";
+import {itemsState, tagsState} from "states";
+import moment from "moment";
 
 const dropDownItems = [
     {
@@ -26,12 +27,37 @@ const dropDownItems = [
 const OrderDropDown = () => {
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState({ name: "", value: -1, order: "" });
+    const [items, setItems] = useRecoilState(itemsState);
 
     const dropdownButtonRef = useRef(null);
     const dropdownRef = useRef(null);
     const dropdownItemRef = useRef([]);
 
     const [tags, setTags] = useRecoilState(tagsState);
+
+    useEffect(() => {
+        console.log("selected", selected, items);
+        let newItems = [...items];
+        const currentDate = moment().format();
+        const dateISOString = currentDate.split("T")[0];
+        if(selected.name === 'time') {
+            if(selected.order === OrderType.DESC) {
+                newItems.sort((a,b) => {
+                    const aTime = new Date(`${dateISOString}T${a.startTime}:00`);
+                    const bTime = new Date(`${dateISOString}T${b.startTime}:00`);
+                    return aTime>bTime ? -1 : aTime<bTime ? 1 : 0;
+                })
+            } else {
+                newItems.sort((a,b) => {
+                    const aTime = new Date(`${dateISOString}T${a.startTime}:00`);
+                    const bTime = new Date(`${dateISOString}T${b.startTime}:00`);
+                    return aTime>bTime ? 1 : aTime<bTime ? -1 : 0;
+                })
+            }
+
+        }
+        setItems(newItems);
+    },[selected, JSON.stringify(items)])
 
     // dropdown 외부 클릭 시 닫히도록
     useEffect(() => {
