@@ -74,20 +74,23 @@ const Main = () => {
         >
             <div className={styles.container}>
                 <div className={styles.calenderContainer}>
-                    {<MyScheduler />}
+                    <MyScheduler />
                 </div>
 
                 <div className={styles.bottomContainer}>
-                    <div className={styles.dropdownContainer}>
-                        <OrderDropDown />
-                        <FilterDropDown />
+                    <div className={styles.filterContainer}>
+                        <Search />
+
+                        <div className={styles.dropdownContainer}>
+                            <OrderDropDown />
+                            <FilterDropDown />
+                        </div>
                     </div>
 
                     <div className={styles.tagContainer}>
                         <TagGroup tags={tags} />
                     </div>
 
-                    {<Search />}
 
                     <CardGrid />
                 </div>

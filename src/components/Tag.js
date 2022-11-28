@@ -51,7 +51,7 @@ const Tag = ({ item }) => {
         )
     } else if (item.type === TagType.TAG) {
         return (
-            <div className={styles.container} style={{ width: "78px", height: "24px" }}>
+            <div className={styles.container} style={{ width: "74px", height: "24px", marginRight: "4px" }}>
                 {item.name}
             </div>
         )

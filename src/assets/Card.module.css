@@ -14,7 +14,16 @@
 }
 
 .backContainer {
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.backContainer::-webkit-scrollbar {
+    display: none;
 }
 
 .title {

@@ -31,7 +31,7 @@ const TimeContent = ({ day, startTime, endTime }) => {
     )
 }
 
-const Card = ({ title, className, tags, professor, classroom, day, startTime, endTime, attributes, listeners }) => {
+const Card = ({ item, attributes, listeners }) => {
     const [flipped, setFlipped] = useState(false);
     const handlers = useSwipeable({
         onSwiped: (eventData) => setFlipped(prev => !prev),
@@ -42,20 +42,33 @@ const Card = ({ title, className, tags, professor, classroom, day, startTime, en
 
     return (
         <ReactCardFlip isFlipped={flipped} flipDirection="horizontal">
-            <div {...handlers} className={`${styles.card} ${styles.frontContainer}`}>
+            <div
+                {...handlers}
+                className={`${styles.card} ${styles.frontContainer}`}
+                onClick={() => setFlipped(prev => !prev)}
+            >
                 <IoMenu className={styles.icon} size={"1.5em"} color={"lightgrey"} {...attributes} {...listeners} />
-                <div className={styles.title}>{title} [{className}]</div>
+                <div className={styles.title}>{item.kwamokname} [{item.bunban}]</div>
                 <div className={styles.tagContainer}>
-                    <TagGroup tags={tags.map(tag => ({ type: TagType.TAG, name: tag }))} />
+                    <TagGroup tags={[`${item.haknean}학년`, `${item.hakjum}학점`, item.juya].map(tag => ({ type: TagType.TAG, name: tag }))} />
                 </div>
-                <div className={styles.contentFont}>{professor}</div>
-                <div className={styles.contentFont}>{classroom}</div>
+                <div className={styles.contentFont}>{item.professor}</div>
+                <div className={styles.contentFont}>{item.classroom}</div>
                 <div className={styles.contentFont}>
-                    <TimeContent day={day} startTime={startTime} endTime={endTime} />
+                    <TimeContent
+                        day={item.day}
+                        startTime={new Date(`2022-01-01T${item.startTime}:00`)}
+                        endTime={new Date(`2022-01-01T${item.endTime}:00`)}
+                    />
                 </div>
 
             </div>
-            <div {...handlers} className={`${styles.card} ${styles.frontContainer}`}>b</div>
+            <div
+                {...handlers}
+                className={`${styles.card} ${styles.backContainer}`}
+            >
+                {item.kcomment}
+            </div>
         </ReactCardFlip>
 
     )

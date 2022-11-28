@@ -8,7 +8,6 @@
 }
 
 .calenderContainer {
-
     display: flex;
     margin: 1% 1% 1% 1%;
 }
@@ -18,15 +17,20 @@
     flex-direction: column;
 }
 
+.filterContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .dropdownContainer {
     display: flex;
     flex-direction: row;
-    width: 240px;
     justify-content: space-between;
-    align-self: flex-end;
+    width: 240px;
 }
 
 .tagContainer {
     height: 28px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }

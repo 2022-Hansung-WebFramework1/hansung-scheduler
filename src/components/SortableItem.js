@@ -23,14 +23,7 @@ export const SortableItem = (props) => {
     return (
         <div ref={setNodeRef} style={style}>
             <Card
-                title={props.item.kwamokname}
-                className={props.item.bunban}
-                tags={[`${props.item.hakjum}학점`, props.item.juya]}
-                professor={props.item.prof.join(", ")}
-                classroom={props.item.classroom}
-                day={props.item.day}
-                startTime={new Date(`2022-01-01T${props.item.startTime}:00`)}
-                endTime={new Date(`2022-01-01T${props.item.endTime}:00`)}
+                item={props.item}
                 attributes={attributes}
                 listeners={listeners}
             />
