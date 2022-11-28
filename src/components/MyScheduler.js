@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import {EditingState, IntegratedEditing, ViewState} from '@devexpress/dx-react-scheduler';
+import { EditingState, IntegratedEditing, ViewState } from '@devexpress/dx-react-scheduler';
 import {
     Scheduler,
     Appointments,
@@ -10,23 +10,21 @@ import {
     WeekView
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-import { DragDropProvider } from '@devexpress/dx-react-scheduler-material-ui';
-import {useDroppable} from "@dnd-kit/core";
-import {CSS} from "@dnd-kit/utilities";
-import {useRecoilState} from "recoil";
-import {itemsState} from "../states";
-import {useCallback, useEffect, useState} from "react";
+import { useDroppable } from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
+import { useRecoilState } from "recoil";
+import { itemsState } from "../states";
 import moment from "moment";
-import {StatusType} from "../types";
+import { StatusType } from "../types";
 
 const convertDay = ["일", "월", "화", "수", "목", "금", "토"]
 
 const MyScheduler = (props) => {
-    const {id} = props;
+    const { id } = props;
     const [items, setItems] = useRecoilState(itemsState);
     const [data, setData] = useState()
 
-    const {isOver, setNodeRef} = useDroppable({
+    const { isOver, setNodeRef } = useDroppable({
         id: id ?? "schedule",
     });
 
@@ -57,7 +55,6 @@ const MyScheduler = (props) => {
         return { data };
     }
 
-
     const dataHandle = useCallback(() => {
         console.log("dataHandle");
         const currentDate = moment();
@@ -80,15 +77,15 @@ const MyScheduler = (props) => {
 
         setData(newItems);
 
-    },[JSON.stringify(items)]);
+    }, [JSON.stringify(items)]);
 
     useEffect(() => {
         dataHandle()
-    },[JSON.stringify(items)])
+    }, [JSON.stringify(items)])
 
     useEffect(() => {
         console.log("data", data);
-    },[data])
+    }, [data])
 
     return (
         <div ref={setNodeRef} style={style}>
@@ -97,20 +94,24 @@ const MyScheduler = (props) => {
                     data={data}
                     firstDayOfWeek={1}
                     locale='ko-KO'
+                    height={616}
                 >
+                    <ViewState currentDate={window.currentDate} />
 
-                    <ViewState
-                        currentDate={window.currentDate}
-                    />
-
-                    <EditingState
-                        onCommitChanges={commitChanges}
-                    />
+                    <EditingState onCommitChanges={commitChanges} />
                     <IntegratedEditing />
 
                     <WeekView
-                        startDayHour={9} endDayHour={21}
-                        excludedDays={[0,6]}
+                        startDayHour={9} // 시작 시각
+                        endDayHour={23} // 종료 시각
+                        excludedDays={[0, 6]} // 제외할 요일(0:일,월,화,수,목,금,6:토)
+                        cellDuration={30} // 시간 간격
+                        layoutComponent={WeekViewLayout}
+                        timeScaleLayoutComponent={WeekViewTimeScaleLayout}
+                        timeTableCellComponent={WeekViewTimeTableCell}
+                        dayScaleCellComponent={WeekViewDayScaleCell}
+                        timeScaleLabelComponent={WeekViewTimeScaleLabel}
+                        timeTableLayoutComponent={WeekViewTimeTableLayout}
                     />
 
                     <Appointments />
@@ -125,6 +126,72 @@ const MyScheduler = (props) => {
     )
 }
 
+const WeekViewLayout = (props) => {
+    const style = {
+        backgroundColor: "white",
+        height: 616,
+        overflow: "hidden"
+    };
 
+    return (
+        <WeekView.Layout {...props} style={style} />
+    );
+}
+
+const WeekViewTimeTableCell = () => {
+    const style = {
+        height: 20
+    };
+
+    return (
+        <WeekView.TimeTableCell style={style} />
+    );
+}
+
+const WeekViewDayScaleCell = (props) => {
+    const style = {
+
+    };
+
+    return (
+        <WeekView.DayScaleCell {...props} style={style} />
+    );
+}
+
+const WeekViewTimeScaleLayout = (props) => {
+    const style = {
+        alignItems: "flex-start",
+        height: 560
+    };
+
+    return (
+        <WeekView.TimeScaleLayout {...props} style={style} />
+    );
+}
+
+const WeekViewTimeScaleLabel = (props) => {
+    const style = {
+        color: "white",
+        height: 20,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-end",
+    };
+
+    return (
+        <WeekView.TimeScaleLabel {...props} style={style} />
+    );
+}
+
+const WeekViewTimeTableLayout = (props) => {
+    const style = {
+        backgroundColor: "white",
+        height: 560
+    };
+
+    return (
+        <WeekView.TimeTableLayout {...props} style={style} />
+    );
+}
 
 export default MyScheduler;
