@@ -9,5 +9,6 @@
 - yarn 1.23.0-20220130.1630
 
 ## 실행 방법
+- npm install -g yarn
 - yarn install
 - yarn start
