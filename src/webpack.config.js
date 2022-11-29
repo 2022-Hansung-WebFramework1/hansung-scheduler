@@ -21,7 +21,7 @@ const config = {
         app: './src/index.js',
     },
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.d.ts', '.js', '.jsx'],
     },
     module: {
         rules: [
@@ -34,6 +34,11 @@ const config = {
                         presets: ['@babel/preset-env', '@babel/preset-react']
                     }
                 }
+            },
+            {
+                test: /\.js$/,
+                enforce: "pre",
+                use: ["source-map-loader"],
             },
             {
                 test: /\.css$/i,
