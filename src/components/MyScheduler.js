@@ -13,9 +13,9 @@ import {
 import { useDroppable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import { useRecoilState } from "recoil";
-import { itemsState } from "../states";
+import { itemsState } from "states";
 import moment from "moment";
-import { StatusType } from "../types";
+import { StatusType } from "types";
 
 const convertDay = ["일", "월", "화", "수", "목", "금", "토"]
 
@@ -150,7 +150,6 @@ const WeekViewTimeTableCell = () => {
 
 const WeekViewDayScaleCell = (props) => {
     const style = {
-
     };
 
     return (
