@@ -23,13 +23,6 @@ const Header = () => {
                     </Text>
                 </a>
             </div>
-            <div className={styles.gnbWrap}>
-                <div className={styles.gnbMenuRight}>
-                    <div className={styles.info}>
-                        <SmoothBorder content={"김"} size={50} />
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };
