@@ -89,12 +89,18 @@ const MyScheduler = (props) => {
 
     return (
         <div ref={setNodeRef} style={style}>
-            <Paper>
+            <Paper
+                style={{
+                    backgroundColor: "rgba(0, 0, 0, 0)",
+                    boxShadow: "0 10px 50px -3px rgba(0, 0, 0, 0.2)",
+                    borderRadius: 20
+                }}
+            >
                 <Scheduler
                     data={data}
                     firstDayOfWeek={1}
                     locale='ko-KO'
-                    height={616}
+                    height={630}
                 >
                     <ViewState currentDate={window.currentDate} />
 
@@ -128,9 +134,11 @@ const MyScheduler = (props) => {
 
 const WeekViewLayout = (props) => {
     const style = {
-        backgroundColor: "white",
-        height: 616,
-        overflow: "hidden"
+        backgroundColor: "rgba(0, 0, 0, 0)",
+        height: 640,
+        overflow: "hidden",
+        border: "1px solid #e0e0e0",
+        borderRadius: 20
     };
 
     return (
@@ -148,19 +156,14 @@ const WeekViewTimeTableCell = () => {
     );
 }
 
-const WeekViewDayScaleCell = (props) => {
-    const style = {
-    };
-
-    return (
-        <WeekView.DayScaleCell {...props} style={style} />
-    );
-}
-
 const WeekViewTimeScaleLayout = (props) => {
     const style = {
+        display: "flex",
+        flexDirection: "column",
         alignItems: "flex-start",
-        height: 560
+        height: 640,
+        backgroundColor: "rgba(0, 0, 0, 0)",
+        marginTop: -10
     };
 
     return (
@@ -170,11 +173,13 @@ const WeekViewTimeScaleLayout = (props) => {
 
 const WeekViewTimeScaleLabel = (props) => {
     const style = {
-        color: "white",
-        height: 20,
+        backgroundColor: "rgba(0, 0, 0, 0)",
+        height: 23,
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-end",
+        justifyContent: "center",
+        paddingRight: "0",
+        paddingLeft: "0",
     };
 
     return (
@@ -185,11 +190,21 @@ const WeekViewTimeScaleLabel = (props) => {
 const WeekViewTimeTableLayout = (props) => {
     const style = {
         backgroundColor: "white",
-        height: 560
+        height: 640
     };
 
     return (
         <WeekView.TimeTableLayout {...props} style={style} />
+    );
+}
+
+const WeekViewDayScaleCell = (props) => {
+    const style = {
+        backgroundColor: "rgba(0, 0, 0, 0)",
+    };
+
+    return (
+        <WeekView.DayScaleCell {...props} style={style} />
     );
 }
 
