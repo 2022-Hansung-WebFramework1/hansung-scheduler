@@ -11,9 +11,8 @@ import CardGrid from "components/CardGrid";
 import MyScheduler from 'components/MyScheduler';
 import {closestCenter, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors} from "@dnd-kit/core";
 import {arrayMove, sortableKeyboardCoordinates} from "@dnd-kit/sortable";
-import {StatusType} from "../types";
-import { IoCalendarOutline } from 'react-icons/io5';
-import ScheduleIcon from "../components/ScheduleIcon";
+import {StatusType} from "types";
+import ScheduleIcon from "components/ScheduleIcon";
 
 const Main = () => {
     const [activeId, setActiveId] = useState(null);
@@ -93,12 +92,9 @@ const Main = () => {
                         <TagGroup tags={tags} />
                     </div>
 
-
                     <CardGrid />
 
                     <ScheduleIcon/>
-
-
                 </div>
             </div>
         </DndContext>

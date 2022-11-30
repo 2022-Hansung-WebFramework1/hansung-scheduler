@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 import data from "data.json";
-import {StatusType} from "./types";
+import {StatusType} from "types";
 
 const dataHandling = () => {
     const _data = JSON.parse(JSON.stringify(data)).data;

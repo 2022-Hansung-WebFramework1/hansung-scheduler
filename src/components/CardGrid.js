@@ -8,7 +8,7 @@ import { SortableItem } from 'components/SortableItem';
 import styles from "assets/CardGrid.module.css";
 import { itemsState } from "states";
 import { useRecoilValue } from "recoil";
-import { StatusType } from "../types";
+import { StatusType } from "types";
 
 import { FixedSizeGrid } from "react-window";
 

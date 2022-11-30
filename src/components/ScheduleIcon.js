@@ -20,10 +20,6 @@ const ScheduleIcon = ({id}) => {
     };
 
     return (
-        // <div className={styles.iconContainer} ref={setNodeRef} style={style}>
-        //     <IoCalendarOutline className={styles.icon} />
-        // </div>
-
         <SmoothCornersWrapper
             shadow="4px 0 10px rgb(0, 0, 0, 0.4)"
             style={{ position: "fixed", bottom: "20px", right: "20px", zIndex: 999 }}
@@ -33,7 +29,11 @@ const ScheduleIcon = ({id}) => {
                 borderRadius="12px"
                 className={styles.iconContainer}
             >
-                <div style={style} ref={setNodeRef}>
+                <div
+                    style={style}
+                    ref={setNodeRef}
+                    onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}
+                >
                     <IoCalendarOutline className={styles.icon} />
                 </div>
             </SmoothCorners>
