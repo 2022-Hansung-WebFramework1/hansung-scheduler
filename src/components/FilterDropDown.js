@@ -11,11 +11,28 @@ const dropDownItems = [
         type: FilterType.PROFESSOR,
         value: 0,
         items: [
-            { name: "박승현", value: 0 },
-            { name: "한기준", value: 1 },
-            { name: "정인환", value: 2 },
-            { name: "김성동", value: 3 },
-            { name: "조혜경", value: 4 },
+            { name: "조세홍", value: 0 },
+            { name: "김진모", value: 1 },
+            { name: "안영아", value: 2 },
+            { name: "황기태", value: 3 },
+            { name: "이찬수", value: 4 },
+            { name: "김진환", value: 5 },
+            { name: "유상미", value: 6 },
+            { name: "정인환", value: 7 },
+            { name: "황호영", value: 8 },
+            { name: "서성현", value: 9 },
+            { name: "권영미", value: 10 },
+            { name: "정인상", value: 11 },
+            { name: "한기준", value: 12 },
+            { name: "장재영", value: 13 },
+            { name: "김광섭", value: 14 },
+            { name: "강희중", value: 15 },
+            { name: "박승현", value: 16 },
+            { name: "김인희", value: 17 },
+            { name: "심규현", value: 18 },
+            { name: "김성동", value: 19 },
+            { name: "이석기", value: 20 },
+            { name: "엄종석", value: 21 }
         ]
     },
     {
@@ -26,7 +43,8 @@ const dropDownItems = [
             { name: "미래관", value: 0 },
             { name: "공학관", value: 1 },
             { name: "탐구관", value: 2 },
-            { name: "연구관", value: 3 }
+            { name: "연구관", value: 3 },
+            { name: "상상관", value: 3 }
         ]
     },
     {
