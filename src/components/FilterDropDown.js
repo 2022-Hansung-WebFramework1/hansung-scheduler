@@ -53,51 +53,44 @@ const FilterDropDown = () => {
     const itemsHandle = useCallback(() => {
         console.log("tags:", tags);
 
-        let newItems = items.map(item => { return { ...item, filterFlag: [1, 1, 1], status: item.status !== StatusType.DRAGGED ? StatusType.SHOWEN : StatusType.DRAGGED } });
+        let newItems = items.map(item => { return { ...item, status: item.status !== StatusType.DRAGGED ? StatusType.HIDDEN : StatusType.DRAGGED } });
+        if(tags.length === 0) {
+            newItems = items.map(item => { return { ...item, status: item.status !== StatusType.DRAGGED ? StatusType.SHOWEN : StatusType.DRAGGED } });
+        }
 
-        // filterFlag considered TagConditions for each Item
         newItems = newItems.map((item) => {
             tags.forEach((tag) => {
                 const { filterType, name } = tag;
 
-                if (filterType == FilterType.PROFESSOR) {
-                    item = {
-                        ...item,
-                        filterFlag: item.filterFlag.map(
-                            (cur, i) => cur *= (item.prof.includes(name)) ? [0, 1, 1][i] : [1.1, 1, 1][i]
-                        )
-                    };
+                if (filterType === FilterType.PROFESSOR) {
+                    if(item.prof.includes(name)) {
+                        item =  {
+                            ...item,
+                            status: StatusType.SHOWEN
+                        }
+                    }
                 }
 
-                else if (filterType == FilterType.PLACE)
-                    item = {
-                        ...item,
-                        filterFlag: item.filterFlag.map(
-                            (cur, i) => cur *= (item.classroom.includes(name)) ? [1, 0, 1][i] : [1, 1.1, 1][i]
-                        )
-                    };
+                if (filterType === FilterType.PLACE) {
+                    if(item.classroom.includes(name)) {
+                        item = {
+                            ...item,
+                            status: StatusType.SHOWEN
+                        }
+                    }
+                }
 
-                else if (filterType == FilterType.CREDIT)
-                    item = {
-                        ...item,
-                        filterFlag: item.filterFlag.map(
-                            (cur, i) => cur *= (name.includes(item.hakjum)) ? [1, 1, 0][i] : [1, 1, 1.1][i]
-                        )
-                    };
-
-                else item = { ...item, filterFlag: [null, null, null] }
+                if (filterType === FilterType.CREDIT) {
+                    if(item.hakjum === name) {
+                        item = {
+                            ...item,
+                            status: StatusType.SHOWEN
+                        }
+                    }
+                }
             })
             return item;
         })
-
-
-        // Condition applied for all Tags
-        newItems.forEach(item =>
-            item.status = (item.status !== StatusType.DRAGGED)
-                ? item.filterFlag.reduce((ac, cur) => ac *= (cur <= 1) ? true : false, 1) ? StatusType.SHOWEN : StatusType.HIDDEN
-                : StatusType.DRAGGED
-        )
-
         console.log("newItems", newItems);
         setItems(newItems);
     }, [JSON.stringify(items), tags]);
