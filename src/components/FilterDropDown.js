@@ -52,10 +52,8 @@ const FilterDropDown = () => {
     const [items, setItems] = useRecoilState(itemsState);
 
     const itemsHandle = useCallback(() => {
-        console.log("tags:", tags);
-
         let newItems = items.map(item => { return { ...item, status: item.status !== StatusType.DRAGGED ? StatusType.HIDDEN : StatusType.DRAGGED } });
-        if(tags.length === 0) {
+        if(tags.length === 0 || (tags.length === 1 && tags[tags.length - 1].type === TagType.ORDER)) {
             newItems = items.map(item => { return { ...item, status: item.status !== StatusType.DRAGGED ? StatusType.SHOWEN : StatusType.DRAGGED } });
         }
 
