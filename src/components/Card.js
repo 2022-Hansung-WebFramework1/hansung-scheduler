@@ -59,8 +59,10 @@ const Card = ({ item, attributes, listeners }) => {
                 className={`${styles.card} ${styles.frontContainer}`}
                 onClick={() => handleModalOpen(item)}
             >
+                <div className={styles.cardBackground}>{item.bunban}</div>
                 <IoMenu className={styles.icon} size={"1.5em"} color={"lightgrey"} {...attributes} {...listeners} />
-                <div className={styles.title}>{item.kwamokname} [{item.bunban}]</div>
+
+                <div className={styles.title}>{item.kwamokname}</div>
                 <div className={styles.tagContainer}>
                     <TagGroup tags={[`${item.haknean}학년`, `${item.hakjum}학점`, item.juya].map(tag => ({ type: TagType.TAG, name: tag }))} />
                 </div>
@@ -72,8 +74,10 @@ const Card = ({ item, attributes, listeners }) => {
                         startTime={new Date(`2022-01-01T${item.startTime}:00`)}
                         endTime={new Date(`2022-01-01T${item.endTime}:00`)}
                     />
-                    { item.online && <div>&nbsp;/&nbsp;</div> }
-                    { item.online && <div>{item.online}</div> }
+                    <div style={{ display: "flex", flexDirection: "row", position: "relative", zIndex: 999 }}>
+                        { item.online && <div>&nbsp;/&nbsp;</div> }
+                        { item.online && <div style={{ color: "black", mixBlendMode: "difference" }}>{item.online}</div> }
+                    </div>
                 </div>
 
             </div>

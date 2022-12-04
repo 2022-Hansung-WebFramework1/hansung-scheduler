@@ -4,5 +4,7 @@
     align-items: center;
     width: auto;
     transition: all 0.2s;
-    margin-top: 20px;
+    margin-top: 16px;
+    z-index: 10;
+    position: relative;
 }

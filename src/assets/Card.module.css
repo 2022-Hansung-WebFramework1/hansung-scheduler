@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    z-index: 10;
 }
 
 .backContainer {
@@ -31,12 +32,12 @@
     color: black;
     font-size: 20px;
     font-weight: bold;
-    margin-top: 5px;
+    /*margin-top: 5px;*/
     /*margin-bottom: 10px;*/
 }
 
 .tagContainer {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .professor {
@@ -60,4 +61,14 @@
 .contentFont {
     color: black;
     font-size: 14px
+}
+
+.cardBackground {
+    font-size: 100px;
+    font-weight: bold;
+    color: #002B70;
+    position: absolute;
+    z-index: 1;
+    top: 76px;
+    right: 12px;
 }
