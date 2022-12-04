@@ -66,12 +66,14 @@ const Card = ({ item, attributes, listeners }) => {
                 </div>
                 <div className={styles.contentFont}>{item.prof.join(", ")}</div>
                 <div className={styles.contentFont}>{item.classroom}</div>
-                <div className={styles.contentFont}>
+                <div className={styles.contentFont} style={{ display: "flex", flexDirection: "row" }}>
                     <TimeContent
                         day={item.day}
                         startTime={new Date(`2022-01-01T${item.startTime}:00`)}
                         endTime={new Date(`2022-01-01T${item.endTime}:00`)}
                     />
+                    <div>&nbsp;/&nbsp;</div>
+                    <div>{item.online}</div>
                 </div>
 
             </div>
