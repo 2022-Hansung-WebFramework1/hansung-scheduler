@@ -64,7 +64,7 @@ const Card = ({ item, attributes, listeners }) => {
                 <div className={styles.tagContainer}>
                     <TagGroup tags={[`${item.haknean}학년`, `${item.hakjum}학점`, item.juya].map(tag => ({ type: TagType.TAG, name: tag }))} />
                 </div>
-                <div className={styles.contentFont}>{item.professor}</div>
+                <div className={styles.contentFont}>{item.prof.join(", ")}</div>
                 <div className={styles.contentFont}>{item.classroom}</div>
                 <div className={styles.contentFont}>
                     <TimeContent
