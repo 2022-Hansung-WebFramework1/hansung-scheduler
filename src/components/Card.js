@@ -72,8 +72,8 @@ const Card = ({ item, attributes, listeners }) => {
                         startTime={new Date(`2022-01-01T${item.startTime}:00`)}
                         endTime={new Date(`2022-01-01T${item.endTime}:00`)}
                     />
-                    <div>&nbsp;/&nbsp;</div>
-                    <div>{item.online}</div>
+                    { item.online && <div>&nbsp;/&nbsp;</div> }
+                    { item.online && <div>{item.online}</div> }
                 </div>
 
             </div>

@@ -98,7 +98,7 @@ const MyScheduler = (props) => {
             >
                 <Scheduler
                     data={data}
-                    firstDayOfWeek={1}
+                    firstDayOfWeek={0}
                     locale='ko-KO'
                     height={630}
                 >
