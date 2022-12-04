@@ -7,7 +7,8 @@ export const TagType = {
 export const FilterType = {
     PROFESSOR: 'professor',
     PLACE: 'place',
-    CREDIT: 'credit'
+    CREDIT: 'credit',
+    JUYA: 'juya',
 }
 
 export const OrderType = {

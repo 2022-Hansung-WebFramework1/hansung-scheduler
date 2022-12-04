@@ -40,6 +40,16 @@ const dropDownItems = [
             { name: "3학점", value: 2 },
             { name: "4학점", value: 3 }
         ]
+    },
+    {
+        title: "주야",
+        type: FilterType.JUYA,
+        value: 3,
+        items: [
+            { name: "주간", value: 0 },
+            { name: "야간", value: 1 },
+            { name: "합반", value: 2 }
+        ]
     }
 ]
 
@@ -81,6 +91,15 @@ const FilterDropDown = () => {
 
                 if (filterType === FilterType.CREDIT) {
                     if(name.includes(item.hakjum)) {
+                        item = {
+                            ...item,
+                            status: StatusType.SHOWEN
+                        }
+                    }
+                }
+
+                if (filterType === FilterType.JUYA) {
+                    if(name.includes(item.juya)) {
                         item = {
                             ...item,
                             status: StatusType.SHOWEN

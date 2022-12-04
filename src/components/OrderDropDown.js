@@ -18,8 +18,8 @@ const dropDownItems = [
         value: 1
     },
     {
-        name: "평가순",
-        engName: "star",
+        name: "학년순",
+        engName: "grade",
         value: 2
     }
 ]
@@ -38,7 +38,6 @@ const OrderDropDown = () => {
     const [tags, setTags] = useRecoilState(tagsState);
 
     useEffect(() => {
-        console.log("selected", selected, items);
         let newItems = [...items];
         const currentDate = moment();
         if(selected.name === 'time') {
@@ -63,7 +62,7 @@ const OrderDropDown = () => {
                     return aTime>bTime ? 1 : aTime<bTime ? -1 : 0;
                 })
             }
-        } else if(selected.name === 'credit') {
+        } else if (selected.name === 'credit') {
             if(selected.order === OrderType.DESC) {
                 newItems.sort((a,b) => {
                     return parseInt(a.hakjum) - parseInt(b.hakjum);
@@ -73,7 +72,16 @@ const OrderDropDown = () => {
                     return parseInt(b.hakjum) - parseInt(a.hakjum);
                 })
             }
-
+        } else if (selected.name === 'grade') {
+            if(selected.order === OrderType.DESC) {
+                newItems.sort((a,b) => {
+                    return parseInt(a.haknean) - parseInt(b.haknean);
+                })
+            } else {
+                newItems.sort((a,b) => {
+                    return parseInt(b.haknean) - parseInt(a.haknean);
+                })
+            }
         }
         setItems(newItems);
     },[selected, JSON.stringify(items)])
