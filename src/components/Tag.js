@@ -11,8 +11,7 @@ const Tag = ({ item }) => {
     if (item.type === TagType.FILTER) {
         return (
             <div className={styles.container}>
-                <div>{ item.name }</div>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginLeft: 4 }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginRight: 6 }}>
                     <FiX
                         color={"#ea5a5a"}
                         onClick={() => {
@@ -22,6 +21,7 @@ const Tag = ({ item }) => {
                         }}
                     />
                 </div>
+                <div>{ item.name }</div>
             </div>
         )
     } else if (item.type === TagType.ORDER) {

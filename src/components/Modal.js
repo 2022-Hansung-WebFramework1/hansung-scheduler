@@ -30,20 +30,20 @@ const Modal = ({ onClose, item }) => {
                     <FiX size={20} />
                 </div>
                 <div style={{ marginTop: 48 }}>
-                    <h2 style={{ letterSpacing: "0.05rem" }}>{item.kwamokname}</h2>
+                    <h2 style={{ letterSpacing: "0.05rem" }}>{item.kwamokname} [{item.bunban}]</h2>
                     <div className={styles.modalItemContainer}>
-                        <div style={{ marginRight: 60, fontWeight: "bold" }}>
-                            <div>분반</div>
+                        <div style={{ marginRight: 40, fontWeight: "bold", letterSpacing: "0.025rem", lineHeight: "2.4rem" }}>
+                            <div>과목코드</div>
                             <div>시간</div>
                             <div>장소</div>
                             <div>트랙</div>
                             <div>교수</div>
                         </div>
-                        <div>
-                            <div>{item.kwamokname}</div>
-                            <div>{item.day} {item.startTime} ~ {item.endTime}</div>
+                        <div style={{ letterSpacing: "0.025rem", lineHeight: "2.4rem" }}>
+                            <div>{item.kwamokcode}</div>
+                            <div>{item.day} {item.startTime} ~ {item.endTime}&nbsp;/&nbsp;{item.online}</div>
                             <div>{item.classroom}</div>
-                            <div>{"웹공학트랙"}</div>
+                            <div>{item.track}</div>
                             <div>{item.prof.join(", ")}</div>
                         </div>
                     </div>

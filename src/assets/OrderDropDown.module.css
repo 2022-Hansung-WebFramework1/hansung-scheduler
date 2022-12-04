@@ -6,7 +6,7 @@
     height: 40px;
     border: 1px solid #D9D9D9;
     border-radius: 0.75rem;
-    background-color: white;;
+    background-color: white;
     transition: all 0.4s;
 
     -moz-user-select: none;
@@ -17,11 +17,11 @@
     cursor: pointer;
 }
 
-.container:hover {
-    background-color: #002870;
-    border: 1px solid #002870;
-    color: white;
-}
+/*.container:hover {*/
+/*    background-color: #002870;*/
+/*    border: 1px solid #002870;*/
+/*    color: white;*/
+/*}*/
 
 .dropdownContainer {
     position: absolute;
