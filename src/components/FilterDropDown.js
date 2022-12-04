@@ -16,6 +16,7 @@ const dropDownItems = [
             { name: "정인환", value: 2 },
             { name: "김성동", value: 3 },
             { name: "조혜경", value: 4 },
+            { name: "조세홍", value: 5 },
         ]
     },
     {
@@ -63,8 +64,8 @@ const FilterDropDown = () => {
                 const { filterType, name } = tag;
 
                 if (filterType === FilterType.PROFESSOR) {
-                    if(item.prof.includes(name)) {
-                        item =  {
+                    if(item.prof.some((x) => x.includes(name))) {
+                        item = {
                             ...item,
                             status: StatusType.SHOWEN
                         }
@@ -81,7 +82,7 @@ const FilterDropDown = () => {
                 }
 
                 if (filterType === FilterType.CREDIT) {
-                    if(item.hakjum === name) {
+                    if(name.includes(item.hakjum)) {
                         item = {
                             ...item,
                             status: StatusType.SHOWEN
