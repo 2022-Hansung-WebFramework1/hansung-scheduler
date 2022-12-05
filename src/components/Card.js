@@ -9,6 +9,7 @@ import { confirmAlert } from "react-confirm-alert";
 import styles from "assets/Card.module.css";
 import { TagType } from "types";
 import Modal from "components/Modal";
+import { bunbanColor } from "utils";
 
 /**
  *
@@ -57,9 +58,10 @@ const Card = ({ item, attributes, listeners }) => {
             <div
                 {...handlers}
                 className={`${styles.card} ${styles.frontContainer}`}
+                style={{ borderColor: bunbanColor[item.bunban] }}
                 onClick={() => handleModalOpen(item)}
             >
-                <div className={styles.cardBackground}>{item.bunban}</div>
+                <div className={styles.cardBackground} style={{ color: bunbanColor[item.bunban] }}>{item.bunban}</div>
                 <IoMenu className={styles.icon} size={"1.5em"} color={"lightgrey"} {...attributes} {...listeners} />
 
                 <div className={styles.title}>{item.kwamokname}</div>

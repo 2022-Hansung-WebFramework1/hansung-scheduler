@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import styles from "assets/Modal.module.css";
-import {FiX} from "react-icons/fi";
+import { FiX } from "react-icons/fi";
+import { bunbanModalColor } from "utils";
 
 const Modal = ({ onClose, item }) => {
     const modalRef = useRef(null);
@@ -22,7 +23,7 @@ const Modal = ({ onClose, item }) => {
     return (
         <div>
             <div className={styles.backgroundBlur}></div>
-            <div ref={modalRef} className={styles.container}>
+            <div ref={modalRef} className={styles.container} style={{ boxShadow: `0 4px 30px -10px ${bunbanModalColor[item.bunban]}` }}>
                 <div
                     className={styles.closeButtonContainer}
                     onClick={onClose}
