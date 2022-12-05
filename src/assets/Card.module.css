@@ -69,6 +69,6 @@
     color: #002B70;
     position: absolute;
     z-index: 1;
-    top: 76px;
-    right: 12px;
+    bottom: -24px;
+    right: 20px;
 }
